@@ -3,7 +3,7 @@ var DinnerModel = function() {
  
 	//TODO Lab 1 implement the data structure that will hold number of guest
 	// and selected dishes for the dinner menu
-	this.numberGuests = 0;
+	//this.numberGuests = 0;
 	this.menu = [];
 	this.setNumberOfGuests = num => this.numberGuests=num;	
 	this.getNumberOfGuests = ()=>  this.numberGuests;
@@ -14,7 +14,7 @@ var DinnerModel = function() {
 
 	//Returns all the dishes on the menu.
 
-	this.getFullMenu =()=>this.menu.map(dish => dish.name);
+	this.getFullMenu =_=>this.menu;
 
 	//Returns all ingredients for all the dishes on the menu.
 	this.getAllIngredients = function() {
@@ -43,7 +43,7 @@ var DinnerModel = function() {
 				sum += ingredient.price;
 			})
 		});
-		return sum*numberGuests;
+		return sum*this.numberGuests;
 		//TODO Lab 1
 	}
 
@@ -69,7 +69,7 @@ var DinnerModel = function() {
 	//function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
 	//you can use the filter argument to filter out the dish by name or ingredient (use for search)
 	//if you don't pass any filter all the dishes will be returned
-	this.getAllDishes = function (type,filter) {
+	this.searchDishes = function (type,filter) {
 	  return dishes.filter(function(dish) {
 			var found = true;
 			if(filter){
@@ -96,15 +96,18 @@ var DinnerModel = function() {
 			}
 		}
 	}
-	
+
+
+	//returns all dishes
 	this.getDishes = _ =>{
 		return dishes
 			.map(dish => {
-							return {
-								id:dish.id,
-								name:dish.name,
-								adress:dish.image
-						}});
+				return {
+					id:dish.id,
+					name:dish.name,
+					adress:dish.image
+					}
+				});
 	}
 
 	

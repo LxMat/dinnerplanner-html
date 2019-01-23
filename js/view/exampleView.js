@@ -54,10 +54,11 @@ var exampleView = function (container, model) {
 		price = price;
 		container[0].appendChild(menuList);
 		
-		let menuPrice = document.createElement("div");
-		menuPrice.innerHTML = `SEK ${price}`
-		container[0].appendChild(menuPrice);
 	}
+	
+	let menuPrice = document.createElement("div");
+	menuPrice.innerHTML = `SEK ${price}`
+	container[0].appendChild(menuPrice);
 	
 
 

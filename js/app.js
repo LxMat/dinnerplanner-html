@@ -2,12 +2,29 @@ $(function() {
 	//We instantiate our model
 	var model = new DinnerModel();
 	
+	if(window.location.href.indexOf("dinnerOverview.html")!==-1){
+		model.addDishToMenu(1);
+		model.addDishToMenu(101);
+		model.addDishToMenu(201);
+		model.setNumberOfGuests(2);
+		var dOverView = new dinnerOverView($(".overview"),model);
+	}
+
+	if(window.location.href.indexOf("dinnerPrintout.html")!==-1){
+		model.addDishToMenu(1);
+		model.addDishToMenu(101);
+		model.addDishToMenu(201);
+		model.setNumberOfGuests(2);
+		var dPrintoutView = new dinnerPrintoutView($(".printout"),model);
+	}
+
 	// And create the instance of ExampleView
 	if ($(".sidebar").length){
 		if(window.location.href.indexOf("selectDish2.html")!==-1){
 			model.addDishToMenu(2);
 			model.setNumberOfGuests(2);
 		} 
+		
 		var sidebarView = new exampleView($(".sidebar"),model);
 		
 	} 
