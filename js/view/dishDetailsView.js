@@ -1,4 +1,5 @@
 var dishDetailsView = function(container,model){
+  this.ingregientsDiv = container[0].querySelector(".ingredients");
   
   this.dishModel = model;
   this.dishContainer = container;
@@ -6,6 +7,7 @@ var dishDetailsView = function(container,model){
   this.nGuests = this.dishModel.numberGuests;
   this.dish = this.dishModel.getDish(1);
   this.ingredients = this.dish.ingredients;
+  this.dishDetails = container[0].querySelector(".dishDetails");
   
   let dishContent = document.createElement("div");
   dishContent.setAttribute("class","dishContent");
@@ -25,7 +27,7 @@ var dishDetailsView = function(container,model){
   dishContent.appendChild(dImg);
   dishContent.appendChild(dishDesc);
   dishContent.appendChild(dBackButton);
-  container[0].appendChild(dishContent);
+  this.dishDetails.appendChild(dishContent);
 
 
   this.ingredientList = document.createElement("div");
@@ -51,15 +53,9 @@ var dishDetailsView = function(container,model){
   this.ingredientList.appendChild(price);
 
 this.ingredientList.setAttribute("class","ingredientList");  
-container[0].appendChild(this.ingredientList)
+this.ingregientsDiv.appendChild(this.ingredientList)
 
 
 
-/* 
-  [{ 
-    'name':'round Brie cheese',
-    'quantity':10,
-    'unit':'g',
-    'price':8
-    } */
+
 }

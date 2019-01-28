@@ -36,7 +36,7 @@ var exampleView = function (container, model) {
 	var numberOfGuests= container.find("#numberOfGuests");
 	
 	let nGuests = model.getNumberOfGuests();
-	console.log(nGuests);
+	
 	let price = 0;
 
 

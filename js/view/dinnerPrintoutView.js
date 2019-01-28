@@ -20,13 +20,16 @@ var dinnerPrintoutView = function(container,model){
 
   this.menu.forEach(dish => {
     let dishInfo = document.createElement("div");
+    dishInfo.setAttribute("class","row")
 
     let dishSummary = document.createElement("div");
+    dishSummary.setAttribute("class","col");
     let dishPreparation = document.createElement("div");
-    
+    dishPreparation.setAttribute("class","col");
+
     let dishImage = document.createElement("img");
     dishImage.src = `images/${dish.image}`;
-
+    dishImage.setAttribute("class","col-sm1")
     let dishTitle = document.createElement("h2");
     dishTitle.innerText = dish.name;
 
@@ -34,7 +37,7 @@ var dinnerPrintoutView = function(container,model){
     dishDescription.innerText = this.lorem;
 
     dishSummary.appendChild(dishImage);
-    dishSummary.appendChild(dishTitle);
+    dishDescription.prepend(dishTitle);
     dishSummary.appendChild(dishDescription);
 
     let preparationHeader = document.createElement("h2");

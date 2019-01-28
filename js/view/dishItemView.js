@@ -5,6 +5,7 @@ var dishItemView = function(container,id,model){
   let dishItem = document.createElement("div");
   dishItem.setAttribute("class","dishItem");
   
+  
   let img = document.createElement('img');
   img.src = `images/${dish.image}`;
   dishItem.appendChild(img);

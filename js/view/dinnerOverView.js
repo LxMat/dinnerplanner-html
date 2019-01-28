@@ -1,18 +1,21 @@
 var dinnerOverView = function(container,model){
   this.menu = model.getFullMenu();
   this.totalPrice = model.getTotalMenuPrice();
-
+  this.oInfoDiv = container[0].querySelector(".overviewInfo");
+  this.menuDiv = container[0].querySelector(".menu");
+  console.log("container",container);
+  console.log(this.oInfoDiv);
   let overViewInfo = document.createElement("div");
   let myDinner = document.createElement("span");
   let backButton = document.createElement("input");
-
+  
   myDinner.innerHTML = `My dinner: ${model.getNumberOfGuests()} people`;
   backButton.setAttribute("type", "button");
   backButton.setAttribute("value", "go back and edit dinner");
 
   overViewInfo.appendChild(myDinner);
   overViewInfo.appendChild(backButton);
-  container[0].appendChild(overViewInfo);
+  this.oInfoDiv.appendChild(overViewInfo);
 
   
   
@@ -28,11 +31,11 @@ var dinnerOverView = function(container,model){
     spanE.innerText = `SEK ${price}`;
     
     dItem.appendChild(spanE);
-    container[0].appendChild(dItem)
+    this.menuDiv.appendChild(dItem)
   });
   let priceD = document.createElement("div");
   priceD.innerHTML = `Total <br/> ${this.totalPrice}`;
-  container[0].appendChild(priceD);
+  this.menuDiv.appendChild(priceD);
 
   let printReceiptButton = document.createElement("input");
   printReceiptButton.setAttribute("type", "button");

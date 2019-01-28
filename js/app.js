@@ -7,6 +7,7 @@ $(function() {
 		model.addDishToMenu(101);
 		model.addDishToMenu(201);
 		model.setNumberOfGuests(2);
+		console.log($(".overview"));
 		var dOverView = new dinnerOverView($(".overview"),model);
 	}
 
@@ -28,8 +29,8 @@ $(function() {
 		var sidebarView = new exampleView($(".sidebar"),model);
 		
 	} 
-	if($(".content").length){
-		var contView = new contentView($(".content"),model);
+	if($(".dishSearchView").length){
+		var contView = new contentView($(".dishSearchView"),model);
 	}
 	if($(".dishDetails").length){
 		var dishDetail = new dishDetailsView($(".dishDetails"),model);

@@ -2,9 +2,10 @@
 
 var contentView = function(container,model){
   this.createImgElems = function(dishes){
-    let div = document.createElement('div');
-    div.setAttribute("class","dishItemView");
-    
+  let div = document.createElement('div');
+  div.setAttribute("class","dishItemView");
+  this.searchResult = container[0].querySelector(".searchResult");   
+  console.log(this.searchResult);
     dishes.forEach(dish => {
       /* let dishItem = document.createElement("div");
       dishItem.setAttribute("class","dishItem");
@@ -15,12 +16,12 @@ var contentView = function(container,model){
       dishTitle.textContent = dish.name;
       dishItem.appendChild(dishTitle); */
       let dItem = document.createElement("div");
-      dItem.setAttribute("class","dishItem")
+      dItem.setAttribute("class","dishItemContainer p-2")
       let dItemView = new dishItemView(dItem,dish.id,model);
       let dishItem = this.dishItemView(model, dish.id);
       div.appendChild(dishItem);
       //container[0].appendChild(div);
-      container[0].appendChild(dItem);
+      this.searchResult.appendChild(dItem);
     });
     
     
