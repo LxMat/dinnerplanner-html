@@ -5,7 +5,7 @@ var contentView = function(container,model){
   let div = document.createElement('div');
   div.setAttribute("class","dishItemView");
   this.searchResult = container[0].querySelector(".searchResult");   
-  console.log(this.searchResult);
+  
     dishes.forEach(dish => {
       /* let dishItem = document.createElement("div");
       dishItem.setAttribute("class","dishItem");

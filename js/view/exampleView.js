@@ -76,7 +76,6 @@ var exampleView = function (container, model) {
 	container[0].appendChild(menuPrice);
 	
 
-
 	/**
 	 * When we want references to some view elements to be available from outside of view, we 
 	 * define them as this.someName. We don't need this in Lab 1 yet, but in Lab 2 it 

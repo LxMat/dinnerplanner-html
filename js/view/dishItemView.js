@@ -3,7 +3,7 @@ var dishItemView = function(container,id,model){
   let dish = model.getDish(id);
   
   let dishItem = document.createElement("div");
-  dishItem.setAttribute("class","dishItem");
+  dishItem.setAttribute("class","card dishItem");
   
   
   let img = document.createElement('img');
