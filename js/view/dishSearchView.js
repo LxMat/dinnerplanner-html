@@ -5,7 +5,7 @@ var contentView = function(container,model){
   let div = document.createElement('div');
   div.setAttribute("class","dishItemView");
   this.searchResult = container[0].querySelector(".searchResult");   
-  console.log(this.searchResult);
+  
     dishes.forEach(dish => {
       /* let dishItem = document.createElement("div");
       dishItem.setAttribute("class","dishItem");
@@ -44,7 +44,6 @@ var contentView = function(container,model){
   }
   
   this.model = model;
-  this.model.addDishToMenu(2);
   this.dishes = this.model.getDishes();
   this.dish = this.dishes[0];
   this.createImgElems(this.dishes);

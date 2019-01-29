@@ -31,16 +31,39 @@ var dishDetailsView = function(container,model){
 
 
   this.ingredientList = document.createElement("div");
-  let p = document.createElement("p");
-  p.innerHTML = `ingredients for ${this.nGuests} people`
-  this.ingredientList.appendChild(p);
+  let th = document.createElement("th");
+  th.innerHTML = `Ingredients for ${this.nGuests} people`
+  //this.ingredientList.appendChild(p);
   let sum = 0;
+  let table = document.createElement("table");
+  table.appendChild(th);
+  table.setAttribute("class","table");
+  
   this.ingredients.forEach(ingredient => {
+    let row = document.createElement("tr");
+    let quantTR =  document.createElement("td");
+    let unitTR =  document.createElement("td");
+    let nameTR =  document.createElement("td");
+    let priceTR =  document.createElement("td");
+
     sum += ingredient.price;
+    
+    quantTR.innerText= ingredient.quantity
+    unitTR.innerText=ingredient.unit
+    nameTR.innerText=ingredient.name
+    priceTR.innerText=`SEK ${ingredient.price}`
+    
+    row.appendChild(quantTR)
+    row.appendChild(unitTR)
+    row.appendChild(nameTR)
+    row.appendChild(priceTR)
+
     let p = document.createElement("p");
     p.innerHTML = `${ingredient.quantity} ${ingredient.unit} ${ingredient.name} ${ingredient.price}`;
-    this.ingredientList.appendChild(p);
+    table.appendChild(row);
+    //this.ingredientList.appendChild(p);
   });
+  this.ingredientList.appendChild(table);
   let addToMenu = document.createElement("input");
   addToMenu.setAttribute("type","button");
   addToMenu.setAttribute("value","Add to menu");
