@@ -9,38 +9,59 @@
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Bootstrap CSS -->
-	<!--	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>-->
-		<link rel="stylesheet" href="/main.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="main.css">
 
   </head>
   <body>
-		<div class="wrapper">
-			<div class="header"><h1>Dinner Planner</h1></div>
-			<div class="sidebar">
-					<h3>My Dinner</h2>
+		<div class="container-fluid ">
+			<div class="row bg-light">
+				<div class="header"><h1>Dinner Planner</h1></div>
+		</div>
+		<nav class=" container row">
+			<nav id=#navbar class="sidebar col-sm2 sticky-top   navbar-fixed-top " >
+
+					<div class="container">
+						<div class="row">
+							<p>My Dinner</p> 
+							<div class="float-right">
+							<button type="button" class="btn btn-sm navbar-toggle" data-toggle="collapse" data-target="#sidebar">
+								= 
+							</button>
+						</div>
+						</div>
+											<div class="collapse-in navbar-collapse" id="sidebar">
+				
+					<div class="row">
 					People: <span id="numberOfGuests"></span>
-					<input type="button" id="plusGuest"value="+">
-					<input type="button" id="minusGuest" value="-">
-					
+					<input type="button" class="btn btn-primary" id="plusGuest"value="+">
+					<input type="button" class="btn btn-primary" id="minusGuest" value="-">
+				</div>
 					<div class="dishMenu">Dish Name Cost</div>
 					<div class="menuprice"></div>
-					
+				</div>
 			</div>
-			<div class="dishSearchView">
-				<div class="content">
-						<p>Find a Dish</p>
-						<input type="text">
-						<select>
-								<option>Starter</option>
-								<option>Main Course</option>
-								<option>Dessert</option>
-							</select>
-						<input type="button" value="Search">
+			</nav>
+			<div class="dishSearchView col container">
+				<div class="row">
+					<div class="content">
+							<p>Find a Dish</p>
+							<input type="text">
+							<select>
+									<option>Starter</option>
+									<option>Main Course</option>
+									<option>Dessert</option>
+								</select>
+							<input type="button" value="Search">
+						</div>
 					</div>
+					<div class="row">
+						<div class="searchResult d-flex flex-row flex-wrap"></div>
+					</div>
+				</div>
 				
 				
-	
 			</div>
 
     <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
@@ -50,7 +71,7 @@
 	<script src="js/app.js"></script>
 	<script src="js/model/dinnerModel.js"></script>
 	<script src="js/view/exampleView.js"></script>
-	<script src="js/view/contentView.js"></script>
+	<script src="js/view/dishSearchView.js"></script>
 	<script src="js/view/dishItemView.js"></script>
 	<!-- TODO: Here you should include JS code for your other views -->
   </body>
