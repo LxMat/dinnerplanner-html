@@ -12,8 +12,22 @@
  * @param {jQuery object} container - references the HTML parent element that contains the view.
  * @param {Object} model - the reference to the Dinner Model
  */ 
+class ExampleViewController{
+ constructor(view, model) {
+
+    view.plusButton.addEventListener("click", 
+        () => {model.setNumberOfGuests(model.getNumberOfGuests() + 1)} );
+    view.minusButton.addEventListener("click", 
+        () => model.setNumberOfGuests(model.getNumberOfGuests() - 1) );
+  }
+}
+
+
 var exampleView = function (container, model) {
 	
+	
+
+
 	/**
 	 * We use the @method find() on @var {jQuery object} container to look for various elements 
 	 * inside the view in orther to use them later on. For instance:
@@ -40,8 +54,9 @@ var exampleView = function (container, model) {
 	let price = 0;
 
 
-	if(model.menu.length>0){
+	if(model.menu.length>=0){
 		let menuList = document.createElement("div");
+		menuList.setAttribute("class","menuList");
 		model.menu.forEach(dish => {
 			let menuItem = document.createElement("div");
 			let name = dish.name;
@@ -73,8 +88,8 @@ var exampleView = function (container, model) {
 	 * 
 	 */
 	
-	this.plusButton = container.find("#plusGuest");
-	this.minusButton = container.find("#minusGuest");
+	this.plusButton = container.find("#plusGuest")[0];
+	this.minusButton = container.find("#minusGuest")[0];
 	
 	this.comfirmbtn = document.createElement("input");
 	this.comfirmbtn.setAttribute("type","button");
@@ -87,5 +102,34 @@ var exampleView = function (container, model) {
 	 */
 	
 	 numberOfGuests.text(nGuests);
+
+	 //Controller code--------------------------------------------------------------------------------------------
+	this.update=function(model, changeDetails){
+     // redraw just the portion affected by the changeDetails
+     // or remove all graphics in the view, read the whole model and redraw 
+
+     numberOfGuests[0].innerText = model.getNumberOfGuests();
+
+     
+
+     if(model.menu.length>0){
+		let menuList = container.find(".menuList")[0];
+		menuList.innerHTML = "";
+		model.menu.forEach(dish => {
+			let menuItem = document.createElement("div");
+			let name = dish.name;
+			let dPrice = model.dishPrice(dish.ingredients)*nGuests; 
+			menuItem.innerText=`${name}  ${dPrice}`;
+			menuList.appendChild(menuItem);
+			price += dPrice;
+		});
+	}
+
+	} 
+
+	new ExampleViewController(this, model);
+	model.addObserver(this.update);
 }
+
+
  

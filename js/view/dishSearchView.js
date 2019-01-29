@@ -44,7 +44,6 @@ var contentView = function(container,model){
   }
   
   this.model = model;
-  this.model.addDishToMenu(2);
   this.dishes = this.model.getDishes();
   this.dish = this.dishes[0];
   this.createImgElems(this.dishes);
