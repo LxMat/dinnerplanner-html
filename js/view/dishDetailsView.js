@@ -33,6 +33,7 @@ var dishDetailsView = function(container,model){
   dishDesc.innerHTML =  this.dish.description;
   dBackButton.setAttribute("type","button");
   dBackButton.setAttribute("value","back to search");
+  dBackButton.setAttribute("class","btn btn-sm btn-primary");
   
   dishContent.appendChild(dHeader);
   dishContent.appendChild(dImg);
@@ -69,16 +70,21 @@ var dishDetailsView = function(container,model){
     row.appendChild(nameTR)
     row.appendChild(priceTR)
 
-    let p = document.createElement("p");
-    p.innerHTML = `${ingredient.quantity} ${ingredient.unit} ${ingredient.name} ${ingredient.price}`;
     table.appendChild(row);
     //this.ingredientList.appendChild(p);
   });
 
   this.ingredientList.appendChild(table);
+//<<<<<<< HEAD
+  //this.addToMenu = document.createElement("input");
+  //this.addToMenu.setAttribute("type","button");
+  //this.addToMenu.setAttribute("value","Add to menu");
+//=======
   this.addToMenu = document.createElement("input");
   this.addToMenu.setAttribute("type","button");
   this.addToMenu.setAttribute("value","Add to menu");
+  this.addToMenu.setAttribute("class","btn btn-sm btn-success");
+//>>>>>>> 18210c4d794d970ddfbcbfb4f2b532b8f8e9f085
   let price = document.createElement("span")
 
 

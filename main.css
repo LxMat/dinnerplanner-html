@@ -3,6 +3,7 @@
 }
 nav.sidebar{
   background: white;
+  align-self: flex-start;
 }
 #welcome-wrapper{
   margin: auto;
