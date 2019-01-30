@@ -1,3 +1,14 @@
-#navbar{
-  background: #428;
+.header{
+  text-align: center;
+}
+nav.sidebar{
+  background: white;
+}
+#welcome-wrapper{
+  margin: auto;
+  width: 50%;
+}
+.center{
+  margin: auto;
+  width: 50%;
 }

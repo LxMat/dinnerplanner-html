@@ -18,17 +18,31 @@
       <div class="row bg-light">
       <div class="header"><h1>Dinner Planner</h1></div>
     </div>
-    <div class="row">
-      <div class="sidebar col-sm1">
-        <h3>My Dinner</h2>
-          People: <span id="numberOfGuests"></span>
-          <input type="button" class="btn btn-primary" id="plusGuest"value="+">
-          <input type="button" class="btn btn-primary" id="minusGuest" value="-">
-          
-          <div class="dishMenu">Dish Name Cost</div>
-          <div class="menuprice"></div>
-          
-        </div>      
+    <div class="container row">
+        <nav class=" container row">
+            <nav id=#navbar class="sidebar col-md sticky-top  navbar-fixed-top " >
+      
+                <div class="container">
+                  <div class="row">
+                    <p>My Dinner</p> 
+                    <div class="float-right">
+                    <button type="button" class="btn btn-sm navbar-toggle" data-toggle="collapse" data-target="#sidebar">
+                      = 
+                    </button>
+                  </div>
+                  </div>
+                            <div class="collapse-in navbar-collapse" id="sidebar">
+              
+                <div class="row">
+                People: <span id="numberOfGuests"></span>
+                <input type="button" class="btn-sm btn-primary" id="plusGuest"value="+">
+                <input type="button" class="btn-sm btn-primary" id="minusGuest" value="-">
+              </div>
+                <div class="dishMenu">Dish Name Cost</div>
+                <div class="menuprice"></div>
+              </div>
+            </div>
+            </nav>      
         <div class="dishDetails col">
         </div>
         <div class="ingredients" ></div>
