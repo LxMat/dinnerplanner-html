@@ -71,7 +71,7 @@ var exampleView = function (container, model) {
 		
 	}
 	
-	let menuPrice = document.createElement("div");
+	var menuPrice = document.createElement("div");
 	menuPrice.innerHTML = `SEK ${price}`
 	currentMenu.appendChild(menuPrice);
 	
@@ -126,6 +126,8 @@ var exampleView = function (container, model) {
 			price += dPrice;
 		});
 	}
+
+	menuPrice.innerHTML = `SEK ${model.getTotalMenuPrice()}`
 
 	} 
 
