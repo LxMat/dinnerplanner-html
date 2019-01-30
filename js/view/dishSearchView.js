@@ -1,6 +1,15 @@
 
 
+class contentViewController{
+ constructor(view, model) {
+
+    view.plusButton.addEventListener("click", 
+        () => {model.setNumberOfGuests(model.getNumberOfGuests() + 1)} );
+  }
+}
+
 var contentView = function(container,model){
+
   this.createImgElems = function(dishes){
   let div = document.createElement('div');
   div.setAttribute("class","dishItemView");
@@ -47,4 +56,12 @@ var contentView = function(container,model){
   this.dishes = this.model.getDishes();
   this.dish = this.dishes[0];
   this.createImgElems(this.dishes);
+
+  this.textSearch = container.find(".textSearch")[0];
+  this.textSearch = container.find(".textSearch")[0];
+  this.textSearch = container.find(".textSearch")[0];
+
+
+
+
 }

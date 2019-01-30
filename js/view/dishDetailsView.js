@@ -1,3 +1,14 @@
+
+class dishDetailsViewController{
+ constructor(view, model) {
+
+
+
+    view.addToMenu.addEventListener("click", 
+        () => {model.addDishToMenu(model.currentDish.id);} );
+  }
+}
+
 var dishDetailsView = function(container,model){
   this.ingregientsDiv = container[0].querySelector(".ingredients");
   
@@ -5,7 +16,7 @@ var dishDetailsView = function(container,model){
   this.dishContainer = container;
   
   this.nGuests = this.dishModel.numberGuests;
-  this.dish = this.dishModel.getDish(1);
+  this.dish = this.dishModel.currentDish;
   this.ingredients = this.dish.ingredients;
   this.dishDetails = container[0].querySelector(".dishDetails");
   
@@ -63,22 +74,23 @@ var dishDetailsView = function(container,model){
     table.appendChild(row);
     //this.ingredientList.appendChild(p);
   });
+
   this.ingredientList.appendChild(table);
-  let addToMenu = document.createElement("input");
-  addToMenu.setAttribute("type","button");
-  addToMenu.setAttribute("value","Add to menu");
+  this.addToMenu = document.createElement("input");
+  this.addToMenu.setAttribute("type","button");
+  this.addToMenu.setAttribute("value","Add to menu");
   let price = document.createElement("span")
 
 
 
   price.innerHTML = `SEK ${sum}`;
-  this.ingredientList.appendChild(addToMenu);
+  this.ingredientList.appendChild(this.addToMenu);
   this.ingredientList.appendChild(price);
 
-this.ingredientList.setAttribute("class","ingredientList");  
-this.ingregientsDiv.appendChild(this.ingredientList)
+  this.ingredientList.setAttribute("class","ingredientList");  
+  this.ingregientsDiv.appendChild(this.ingredientList)
 
 
-
+  new dishDetailsViewController(this,model);
 
 }

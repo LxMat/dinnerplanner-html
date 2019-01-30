@@ -71,12 +71,14 @@ var DinnerModel = function() {
 			}
 		}
 		 this.menu.push(dish);
+		 this.notifyObservers();
 		 
 		}
 		
 	//Removes dish from menu
 	this.removeDishFromMenu = function(id) {
 		this.menu = this.menu.filter(menuDish => menuDish.id != id);
+		this.notifyObservers();
 		//TODO Lab 1
 	}
 	
@@ -111,7 +113,7 @@ var DinnerModel = function() {
 		}
 	}
 	
-	this.currentDish = this.getDish(1);
+
 	
 	//returns all dishes
 	this.getDishes = _ =>{
@@ -379,5 +381,6 @@ var DinnerModel = function() {
 		}
 	];
 
+	this.currentDish = this.getDish(2);
 
 }
