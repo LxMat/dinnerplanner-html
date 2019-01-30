@@ -52,7 +52,7 @@ var exampleView = function (container, model) {
 	let nGuests = model.getNumberOfGuests();
 	
 	let price = 0;
-
+	let currentMenu = container[0].querySelector(".dishMenu");
 
 	if(model.menu.length>=0){
 		let menuList = document.createElement("div");
@@ -73,7 +73,7 @@ var exampleView = function (container, model) {
 	
 	let menuPrice = document.createElement("div");
 	menuPrice.innerHTML = `SEK ${price}`
-	container[0].appendChild(menuPrice);
+	currentMenu.appendChild(menuPrice);
 	
 
 	/**
@@ -92,8 +92,11 @@ var exampleView = function (container, model) {
 	
 	this.comfirmbtn = document.createElement("input");
 	this.comfirmbtn.setAttribute("type","button");
+	this.comfirmbtn.setAttribute("class", "btn-sm btn-primary")
 	this.comfirmbtn.setAttribute("value","Confirm Dinner");
-	container[0].appendChild(this.comfirmbtn);
+	let btnDiv = document.createElement("div")
+	btnDiv.appendChild(this.comfirmbtn)
+	currentMenu.appendChild(btnDiv);
 	
 	/**
 	 * Here we use @var {jQuery object} numberOfGuests that is a reference to <span>

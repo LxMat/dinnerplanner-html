@@ -10,6 +10,7 @@ var dinnerOverView = function(container,model){
   myDinner.innerHTML = `My dinner: ${model.getNumberOfGuests()} people`;
   backButton.setAttribute("type", "button");
   backButton.setAttribute("value", "go back and edit dinner");
+  backButton.setAttribute("class","btn btn-sm btn-primary")
 
   overViewInfo.appendChild(myDinner);
   overViewInfo.appendChild(backButton);
@@ -35,5 +36,6 @@ var dinnerOverView = function(container,model){
   let printReceiptButton = document.createElement("input");
   printReceiptButton.setAttribute("type", "button");
   printReceiptButton.setAttribute("value", "Print Full Receipt");
+  printReceiptButton.setAttribute("class", "btn btn-sm btn-success")
   container[0].appendChild(printReceiptButton);
 }
