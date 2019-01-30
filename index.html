@@ -19,8 +19,10 @@
 			<div class="row-12 bg-light">
 				<div class="header"><h1>Dinner Planner</h1></div>
 		</div>
-		<nav class=" container row">
-			<nav id=#navbar class="sidebar col-md sticky-top  navbar-fixed-top " >
+		
+		<div class="row">
+		<div class="col-sm4 sticky-top">
+			<nav id=#navbar class="sidebar navbar    " >
 
 					<div class="container">
 						<div class="row">
@@ -31,7 +33,7 @@
 							</button>
 						</div>
 						</div>
-											<div class="collapse-in navbar-collapse" id="sidebar">
+						<div class="collapse-in navbar-collapse" id="sidebar">
 				
 					<div class="row">
 					People: <span id="numberOfGuests"></span>
@@ -42,8 +44,10 @@
 					<div class="menuprice"></div>
 				</div>
 			</div>
-			</nav>
-			<div class="dishSearchView col-md-auto container">
+			</div>
+		
+		<div class="col-md">
+			<div class="dishSearchView col container">
 				<div class="row">
 					<div class="content">
 							<p>Find a Dish</p>
@@ -60,9 +64,9 @@
 						<div class="searchResult d-flex flex-row flex-wrap"></div>
 					</div>
 				</div>
-				
-				
 			</div>
+				
+		</div>	
 
     <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
