@@ -120,7 +120,7 @@ var exampleView = function (container, model) {
 		model.menu.forEach(dish => {
 			let menuItem = document.createElement("div");
 			let name = dish.name;
-			let dPrice = model.dishPrice(dish.ingredients)*nGuests; 
+			let dPrice = model.dishPrice(dish.ingredients)*model.getNumberOfGuests(); 
 			menuItem.innerText=`${name}  ${dPrice}`;
 			menuList.appendChild(menuItem);
 			price += dPrice;
