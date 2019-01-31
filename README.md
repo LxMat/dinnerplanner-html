@@ -1,7 +1,7 @@
 **Lab 1**
  - Done
 
-**Lab 2** 
+**Lab 2** (uses index-Lab2.html and appLab2.js)
 - In searchView it is possible to add and remove people
 - DishDetailsVew  adds selected dish to the menu and cost is calculated.
 
