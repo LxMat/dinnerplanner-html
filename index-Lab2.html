@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dinner planner</title>
+		
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="main.css">
+
+  </head>
+  <body>
+		<div class="container-fluid ">
+			<div class="row-12 bg-light">
+				<div class="header"><h1>Dinner Planner</h1></div>
+		</div>
+		
+		<div class="row">
+		<div class="col-sm-12 col-md-3 sticky-top">
+			<nav id=#navbar class="sidebar navbar    " >
+
+					<div class="container">
+						<div class="row w-100">
+							<p>My Dinner</p> 
+							<div class="col d-block d-md-none d-flex justify-content-end">
+							<button type="button" class="btn btn-sm navbar-toggle" data-toggle="collapse" data-target="#sidebar">
+								= 
+							</button>
+						</div>
+						</div>
+						<div class="collapse-in navbar-collapse" id="sidebar">
+				
+					<div class="row">
+					People: <span id="numberOfGuests"></span>
+					<input type="button" class="btn-sm btn-primary" id="plusGuest"value="+">
+					<input type="button" class="btn-sm btn-primary" id="minusGuest" value="-">
+				</div>
+					<div class="dishMenu">Dish Name Cost</div>
+					<div class="menuprice"></div>
+				</div>
+			</div>
+			</div>
+		
+		<div class="col">
+			<div class="dishSearchView col container">
+				<div class="row">
+					<div class="content">
+							<p>Find a Dish</p>
+							<input type="text" class="textSearch">
+							<select class ="selectSearch">
+									<option value="starter">Starter</option>
+									<option value="main dish">Main Course</option>
+									<option value="dessert">Dessert</option>
+								</select>
+							<input type="button" value="Search" class="searchButton">
+						</div>
+					</div>
+					<div class="row">
+						<div class="searchResult d-flex flex-row flex-wrap"></div>
+					</div>
+				</div>
+			</div>
+				
+		</div>	
+
+    <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<!-- The application JavaScript code -->
+	<script src="js/appLab2.js"></script>
+	<script src="js/model/dinnerModel.js"></script>
+	<script src="js/view/exampleView.js"></script>
+	<script src="js/view/dishSearchView.js"></script>
+	<script src="js/view/dishItemView.js"></script>
+	<!-- TODO: Here you should include JS code for your other views -->
+  </body>
+</html>
