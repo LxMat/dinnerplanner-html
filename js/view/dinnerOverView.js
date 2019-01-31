@@ -1,5 +1,7 @@
 var dinnerOverView = function(container,model){
+  this.container = container;
   this.menu = model.getFullMenu();
+  console.log(this.menu)
   this.totalPrice = model.getTotalMenuPrice();
   this.oInfoDiv = container[0].querySelector(".overviewInfo");
   this.menuDiv = container[0].querySelector(".menu");

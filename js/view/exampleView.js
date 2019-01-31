@@ -24,6 +24,7 @@ class ExampleViewController{
 
 
 var exampleView = function (container, model) {
+	this.container = container;
 	
 	
 

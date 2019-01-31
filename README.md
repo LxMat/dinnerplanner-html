@@ -1,3 +1,12 @@
+**Lab 1**
+ - Done
+
+**Lab 2** 
+- In searchView it is possible to add and remove people
+In DishDetailsVew  adds selected dish to the menu and cost is calculated.
+
+
+
 Interaction Programing - Lab assignment - HTML
 =================================================
 

@@ -10,6 +10,7 @@ class dishDetailsViewController{
 }
 
 var dishDetailsView = function(container,model){
+  this.container = container;
   this.ingregientsDiv = container[0].querySelector(".ingredients");
   
   this.dishModel = model;
@@ -18,6 +19,8 @@ var dishDetailsView = function(container,model){
   this.nGuests = this.dishModel.numberGuests;
   this.dish = this.dishModel.currentDish;
   this.ingredients = this.dish.ingredients;
+  
+
   this.dishDetails = container[0].querySelector(".dishDetails");
   
   let dishContent = document.createElement("div");

@@ -9,7 +9,9 @@ class contentViewController{
 }
 
 var contentView = function(container,model){
-
+  this.container = container
+  
+  
   this.createImgElems = function(dishes){
   let div = document.createElement('div');
   div.setAttribute("class","dishItemView");

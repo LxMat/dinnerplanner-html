@@ -1,41 +1,86 @@
 $(function() {
-	//We instantiate our model
-	var model = new DinnerModel();
-	
-	if(window.location.href.indexOf("dinnerOverview.html")!==-1){
-		model.addDishToMenu(1);
-		model.addDishToMenu(101);
-		model.addDishToMenu(201);
-		model.setNumberOfGuests(2);
-		console.log($(".overview"));
-		var dOverView = new dinnerOverView($(".overview"),model);
-	}
+  class GeneralStateController{
+    constructor(){
+      this.views = {};
+      this.observers = {};
+    }
+    /*
+    List of ViewNames
+    "sidebarView",
+    "overviewView"
+    "printView",
+    "contentView",
+    "detailsView",
+    */
+   addView(name,v){
+     if(this.views.length===1){
+       
+    }
+    //this.views.({key:v});
+    this.views[name] = v;
+  };   
+  hideAllViews(){
+    
+      for(let key in this.views){
+        this.views[key].container.hide();
+      }
+      
 
-	if(window.location.href.indexOf("dinnerPrintout.html")!==-1){
-		model.addDishToMenu(1);
-		model.addDishToMenu(101);
-		model.addDishToMenu(201);
-		model.setNumberOfGuests(2);
-		var dPrintoutView = new dinnerPrintoutView($(".printout"),model);
-	}
+    };
+    getViews(){
+      return this.views;
+    }
+    showDishDetailsScreen(){
+      this.hideAllViews()
+      this.views.sidebarView.container.show()
+      this.views.detailsView.container.show()
+    }
+    showDishSearchScreen(){
+      this.hideAllViews()
+      this.views.sidebarView.container.show()
+      this.views.contentView.container.show()
+    }
+    showDishDinnerOverView(){
+      this.hideAllViews()
+      this.views.overviewView.container.show()
+    }
+    showDishDinnerPrintView(){
+      this.hideAllViews()
+      this.views.printView.container.show()
+    }
 
-	// And create the instance of ExampleView
-	if ($(".sidebar").length){
-		if(window.location.href.indexOf("selectDish2.html")!==-1){
-			model.addDishToMenu(2);
-			model.setNumberOfGuests(2);
-		} 
-		
-		var sidebarView = new exampleView($(".sidebar"),model);
-		
-	} 
-	if($(".dishSearchView").length){
-		var contView = new contentView($(".dishSearchView"),model);
-	}
-	if($(".dishDetails").length){
-		var dishDetail = new dishDetailsView($(".dishDetails"),model);
-	}
+  }
+  
+  //We instantiate our model
+	var model = new DinnerModel(); 
+  var genStateController = new GeneralStateController();
+  
 
+  model.addDishToMenu(1); 
+  model.addDishToMenu(101);
+  model.setNumberOfGuests(2); 
+
+
+  var sidebarView = new exampleView($(".sidebar"),model);
+  var dOverView = new dinnerOverView($(".overview"),model);
+  var dPrintoutView = new dinnerPrintoutView($(".printout"),model);
+  var contView = new contentView($(".dishSearchView"),model);
+  var dishDetail = new dishDetailsView($(".detailsView"),model);
+  
+  genStateController.addView("sidebarView",sidebarView);
+  genStateController.addView("overviewView",dOverView);
+  genStateController.addView("printView",dPrintoutView);
+  genStateController.addView("contentView",contView);
+  genStateController.addView("detailsView",dishDetail); 
+
+  genStateController.hideAllViews();
+  genStateController.showDishSearchScreen();
+ console.log("app.js",model.getFullMenu())
+//genStateController.showDishDinnerPrintView();
+ //genStateController.showDishDinnerOverView();
+
+
+  
 
 
 
