@@ -4,6 +4,7 @@ $(function() {
       this.views = {};
       this.observers = {};
     }
+    
     /*
     List of ViewNames:
     "sidebarView",
@@ -12,6 +13,7 @@ $(function() {
     "contentView",
     "detailsView",
     */
+
    addView(name,v){
     this.views[name] = v;
   };   
