@@ -5,7 +5,7 @@ $(function() {
       this.observers = {};
     }
     /*
-    List of ViewNames
+    List of ViewNames:
     "sidebarView",
     "overviewView"
     "printView",
@@ -13,19 +13,12 @@ $(function() {
     "detailsView",
     */
    addView(name,v){
-     if(this.views.length===1){
-       
-    }
-    //this.views.({key:v});
     this.views[name] = v;
   };   
   hideAllViews(){
-    
       for(let key in this.views){
         this.views[key].container.hide();
       }
-      
-
     };
     getViews(){
       return this.views;
@@ -65,17 +58,19 @@ $(function() {
   var dOverView = new dinnerOverView($(".overview"),model);
   var dPrintoutView = new dinnerPrintoutView($(".printout"),model);
   var contView = new contentView($(".dishSearchView"),model);
-  var dishDetail = new dishDetailsView($(".detailsView"),model);
+  var dishDetailV = new dishDetailsView($(".detailsView"),model);
   
+  var exampleVController = new ExampleViewController(sidebarView,model);
+  var dishDetailsVController = new dishDetailsViewController(dishDetailV,model);
+
   genStateController.addView("sidebarView",sidebarView);
   genStateController.addView("overviewView",dOverView);
   genStateController.addView("printView",dPrintoutView);
   genStateController.addView("contentView",contView);
-  genStateController.addView("detailsView",dishDetail); 
+  genStateController.addView("detailsView",dishDetailV); 
 
   genStateController.hideAllViews();
   genStateController.showDishSearchScreen();
- console.log("app.js",model.getFullMenu())
 //genStateController.showDishDinnerPrintView();
  //genStateController.showDishDinnerOverView();
 

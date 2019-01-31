@@ -1,8 +1,7 @@
 var dinnerPrintoutView = function(container,model){
   this.lorem = "	Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est velit rerum ex. Ratione repudiandae praesentium et porro non nam quos explicabo a veniam distinctio incidunt ipsam corporis, eveniet, asperiores dicta. "
-  console.log("printoutview",model.getFullMenu())
-  this.container = container;
-  
+
+  this.container = container;  
   this.menu = model.getFullMenu();
   
   this.totalPrice = model.getTotalMenuPrice();

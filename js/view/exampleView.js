@@ -12,7 +12,9 @@
  * @param {jQuery object} container - references the HTML parent element that contains the view.
  * @param {Object} model - the reference to the Dinner Model
  */ 
-class ExampleViewController{
+
+/* 
+ class ExampleViewController{
  constructor(view, model) {
 
     view.plusButton.addEventListener("click", 
@@ -21,7 +23,7 @@ class ExampleViewController{
         () => model.setNumberOfGuests(model.getNumberOfGuests() - 1) );
   }
 }
-
+ */
 
 var exampleView = function (container, model) {
 	this.container = container;
@@ -132,7 +134,6 @@ var exampleView = function (container, model) {
 
 	} 
 
-	new ExampleViewController(this, model);
 	model.addObserver(this.update);
 }
 
