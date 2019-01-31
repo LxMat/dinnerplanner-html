@@ -67,7 +67,7 @@ var exampleView = function (container, model) {
 		});
 
 		price = price;
-		container[0].appendChild(menuList);
+		currentMenu.appendChild(menuList);
 		
 	}
 	
