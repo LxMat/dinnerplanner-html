@@ -3,6 +3,6 @@ class dishDetailsViewController{
     view.addToMenu.addEventListener("click", 
       () => {model.addDishToMenu(model.getCurrentDish().id);} );
     view.dbackButton.addEventListener("click",
-      () => generalController.showDishSearchScreen())
+      () =>{generalController.showDishSearchScreen()})
    }
  }

@@ -1,6 +1,6 @@
 //DinnerModel Object constructor
 var DinnerModel = function() {
-
+	this.numberGuests = 0;
 	//Controller code
 	var observers=[];
     this.addObserver=function(observer){ observers.push(observer); }

@@ -26,7 +26,7 @@ $(function() {
   getViews(){
     return this.views;
   }
-  showDishDetailsScreen(){
+  dishSelected(){
     this.hideAllViews()
     this.views.sidebarView.container.show()
     this.views.detailsView.container.show()
@@ -50,32 +50,32 @@ $(function() {
   //We instantiate our model
 	var model = new DinnerModel(); 
   var genStateController = new GeneralStateController();
+  model.setNumberOfGuests(2);
   
-
-  model.addDishToMenu(1); 
-  model.addDishToMenu(101);
-  model.setNumberOfGuests(2); 
-
   //instantiate the views
-  var sidebarView = new exampleView($(".sidebar"),model);
+  var sidebarV = new sidebarView($(".sidebar"),model);
   var dOverView = new dinnerOverView($(".overview"),model);
   var dPrintoutView = new dinnerPrintoutView($(".printout"),model);
   var searchV = new searchView($(".dishSearchView"),model);
   var dishDetailV = new dishDetailsView($(".detailsView"),model);
   
-  genStateController.addView("sidebarView",sidebarView);
+  genStateController.addView("sidebarView",sidebarV);
   genStateController.addView("overviewView",dOverView);
   genStateController.addView("printView",dPrintoutView);
   genStateController.addView("searchView",searchV);
   genStateController.addView("detailsView",dishDetailV); 
 
-  var exampleVController = new ExampleViewController(sidebarView,model,genStateController);
+  var sidebarVController = new sidebarViewController(sidebarV,model,genStateController);
   var dishDetailsVController = new dishDetailsViewController(dishDetailV,model,genStateController);
   var searchVController = new searchViewController(searchV,model,genStateController);
   var prinoutController = new dishPrintoutController(dPrintoutView,model,genStateController);
   var overviewController = new dishOverviewController(dOverView,model,genStateController);  
 
   genStateController.hideAllViews();
+
+
+
+
   this.welcomeDiv = document.querySelector("#welcome-wrapper")
   this.welcomebtn = document.querySelector("#welcomebtn");
   this.welcomebtn.addEventListener("click",
@@ -83,20 +83,5 @@ $(function() {
         genStateController.showDishSearchScreen();
     })
 
-//  genStateController.showDishSearchScreen();
-  //genStateController.showDishDinnerPrintView();
- //genStateController.showDishDinnerOverView();
-
-
-  
-
-
-
- 	/**
-	 * IMPORTANT: app.js is the only place where you are allowed to
-	 * use the $('someSelector') to search for elements in the whole HTML.
-	 * In other places you should limit the search only to the children 
-	 * of the specific view you're working with (see exampleView.js).
-	 */
 
 });

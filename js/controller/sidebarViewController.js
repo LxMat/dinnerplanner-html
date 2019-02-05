@@ -1,4 +1,4 @@
-class ExampleViewController{
+class sidebarViewController{
   constructor(view, model,generalController) {
  
     view.plusButton.addEventListener("click", 
