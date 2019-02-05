@@ -1,7 +1,8 @@
 var dinnerPrintoutView = function(container,model){
   this.lorem = "	Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est velit rerum ex. Ratione repudiandae praesentium et porro non nam quos explicabo a veniam distinctio incidunt ipsam corporis, eveniet, asperiores dicta. "
 
-  this.container = container;  
+  this.container = container; 
+  this.model = model; 
   this.menu = model.getFullMenu();
   
   this.totalPrice = model.getTotalMenuPrice();
@@ -20,6 +21,7 @@ var dinnerPrintoutView = function(container,model){
   container[0].appendChild(overViewInfo);
   
   this.printout = document.createElement("div");
+  this.printout.id= "printOutDiv";
   
   this.menu.forEach(dish => {
     let dishInfo = document.createElement("div");
@@ -63,17 +65,12 @@ var dinnerPrintoutView = function(container,model){
   container[0].appendChild(this.printout);
 
   this.update = ()=>{
+    this.printout.innerHTML="";
     this.menu = model.getFullMenu();
   
     this.totalPrice = model.getTotalMenuPrice();
-    
-    let overViewInfo = document.createElement("div");
     this.myDinner.innerHTML = `My dinner: ${model.getNumberOfGuests()} people`;
     
-/*     overViewInfo.appendChild(this.myDinner);
-    overViewInfo.appendChild(this.backButton);
-    container[0].appendChild(overViewInfo); 
- */
 
     this.menu.forEach(dish => {
       let dishInfo = document.createElement("div");
@@ -117,4 +114,5 @@ var dinnerPrintoutView = function(container,model){
   
 
   }
+  this.model.addObserver(this.update);
 }

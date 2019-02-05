@@ -21,6 +21,7 @@
 		</div>
 		
 		<div class="row">
+			
 		<!-- sidebar exampleView-->
 		<div class="col-sm-12 col-md-3 sticky-top">
 			<nav id=#navbar class="sidebar navbar    " >
@@ -71,27 +72,39 @@
 			</div>
 			<div class="ingredients col-md" ></div>
 		</div>
+
+	<!--Dinner overView-->
+	<div class="overview">
+		<div class="row">
+			<div class="overviewInfo"></div>
+		</div>
+		<div class="row">
+			<div class="menu d-flex flex-row flex-fill flex-wrap"></div>
+		</div>
+	</div>
+
+
+	<!-- ... printout...  -->
+	<div class="printout"></div>
+
+		</div>
 	</div>
 	
 
 
-	<!--Dinner overView-->
-	<div class="overview">
-			<div class="row">
-				<div class="overviewInfo"></div>
-			</div>
-			<div class="row">
-				<div class="menu d-flex flex-row flex-fill flex-wrap"></div>
-			</div>
-		</div>
-
-
-		<!-- ... printout...  -->
-		<div class="printout"></div>
-
-			</div>
 	
 		</div>
+
+		<div id="welcome-wrapper">
+				<div  class="align-center">
+						<div id="welcome-text">
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, quos?
+						</div>
+					</div>
+						<div class="row-12 center">
+							<input type="button" id="welcomebtn"  value="Create New Dinner" class="btn btn-bg btn-primary">
+						</div>
+					</div>
 		
     <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -109,6 +122,7 @@
 	<script src="js/controller/dishDetailsViewController.js"></script>
 	<script src="js/controller/searchViewController.js"></script>
 	<script src="js/controller/dishPrintoutController.js"></script>
+	<script src="js/controller/dishOverviewController.js"></script>
 	<!-- TODO: Here you should include JS code for your other views -->
   </body>
 </html>

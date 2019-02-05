@@ -73,10 +73,17 @@ $(function() {
   var dishDetailsVController = new dishDetailsViewController(dishDetailV,model,genStateController);
   var searchVController = new searchViewController(searchV,model,genStateController);
   var prinoutController = new dishPrintoutController(dPrintoutView,model,genStateController);
-  
+  var overviewController = new dishOverviewController(dOverView,model,genStateController);  
 
   genStateController.hideAllViews();
-  genStateController.showDishSearchScreen();
+  this.welcomeDiv = document.querySelector("#welcome-wrapper")
+  this.welcomebtn = document.querySelector("#welcomebtn");
+  this.welcomebtn.addEventListener("click",
+    ()=>{this.welcomeDiv.style.display = "none";
+        genStateController.showDishSearchScreen();
+    })
+
+//  genStateController.showDishSearchScreen();
   //genStateController.showDishDinnerPrintView();
  //genStateController.showDishDinnerOverView();
 

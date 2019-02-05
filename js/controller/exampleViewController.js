@@ -6,7 +6,7 @@ class ExampleViewController{
     view.minusButton.addEventListener("click", 
       () => model.setNumberOfGuests(model.getNumberOfGuests() - 1) );
     view.confirmbtn.addEventListener("click",
-      () => generalController.showDinnerPrintScreen() );
+      () => generalController.showDishDinnerOverScreen() );
   }
         
 }
