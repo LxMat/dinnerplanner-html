@@ -28,7 +28,7 @@ var dinnerOverView = function(container,model){
     let dItemView = new dishItemView(dItem,model,dish.id);
     let price = model.dishPrice(dish.ingredients);
     let spanE = document.createElement("span");
-    spanE.innerText = `SEK ${price}`;
+    spanE.innerText = `SEK ${price*this.model.getNumberOfGuests}`;
     dItem.appendChild(spanE);
     this.menuDiv.appendChild(dItem)
   });
@@ -55,7 +55,8 @@ var dinnerOverView = function(container,model){
       let dItemView = new dishItemView(dItem,model,dish.id);
       let price = model.dishPrice(dish.ingredients);
       let spanE = document.createElement("span");
-      spanE.innerText = `SEK ${price}`;
+      
+      spanE.innerText = `SEK ${price*this.model.getNumberOfGuests()}`;
       dItem.appendChild(spanE);
       this.menuDiv.appendChild(dItem)
     });
