@@ -70,10 +70,10 @@ var dinnerPrintoutView = function(container,model){
     let overViewInfo = document.createElement("div");
     this.myDinner.innerHTML = `My dinner: ${model.getNumberOfGuests()} people`;
     
-    overViewInfo.appendChild(this.myDinner);
+/*     overViewInfo.appendChild(this.myDinner);
     overViewInfo.appendChild(this.backButton);
     container[0].appendChild(overViewInfo); 
-
+ */
 
     this.menu.forEach(dish => {
       let dishInfo = document.createElement("div");
@@ -113,7 +113,6 @@ var dinnerPrintoutView = function(container,model){
       
       this.printout.appendChild(dishInfo);
       this.container[0].appendChild(this.printout);
-
     });
   
 
