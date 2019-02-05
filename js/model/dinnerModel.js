@@ -10,10 +10,8 @@ var DinnerModel = function() {
              observers[i](this); // we assume that observers[i] is a function, so we call it like observers[i](parameters)
     }
 
-    this.removeObserver=function(observer){  /* remove observer from array */}
+    this.removeObserver=function(observer){ observers.filter(item => item !== observer)}
  
-	//TODO Lab 1 implement the data structure that will hold number of guest
-	// and selected dishes for the dinner menu
 	
 	this.menu = [];
 	this.setNumberOfGuests = num => {

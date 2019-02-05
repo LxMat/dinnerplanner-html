@@ -1,4 +1,5 @@
-var dinnerOverView = function(container,model){
+class dinnerOverView{
+  constructor(container,model){
   this.container = container;
   this.model = model;
   this.menu = model.getFullMenu();
@@ -42,7 +43,11 @@ var dinnerOverView = function(container,model){
   this.printReceiptButton.setAttribute("class", "btn btn-sm btn-success")
   container[0].appendChild(this.printReceiptButton);
 
-  this.update = () =>{
+  
+  this.model.addObserver(this.update.bind(this));
+}
+
+update(model,changeDetails){
     this.menuDiv.innerHTML ="";
     this.menu = model.getFullMenu();
     this.totalPrice = model.getTotalMenuPrice();
@@ -61,5 +66,4 @@ var dinnerOverView = function(container,model){
       this.menuDiv.appendChild(dItem)
     });
   }
-  this.model.addObserver(this.update);
 }

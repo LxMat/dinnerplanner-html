@@ -94,7 +94,7 @@ class sidebarView {
 
 
 		if (model.menu.length > 0) {
-			let menuList = container.find(".menuList")[0];
+			let menuList = this.container.find(".menuList")[0];
 			menuList.innerHTML = "";
 			model.menu.forEach(dish => {
 				let menuItem = document.createElement("div");
@@ -102,7 +102,6 @@ class sidebarView {
 				let dPrice = model.dishPrice(dish.ingredients) * model.getNumberOfGuests();
 				menuItem.innerText = `${name}  ${dPrice}`;
 				menuList.appendChild(menuItem);
-				price += dPrice;
 			});
 		}
 

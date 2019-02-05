@@ -15,19 +15,4 @@ var dishItemView = function(container,model,id){
   container.appendChild(dishItem);
   container.appendChild(dishTitle);
 
-  /* let dish = model.getDish(this.id);
-  
-  let dishItem = document.createElement("div");
-  dishItem.setAttribute("id",this.id)
-  dishItem.setAttribute("class","dishItem card");
-  
-  let img = document.createElement('img');
-  img.src = `images/${dish.image}`;
-  dishItem.appendChild(img);
-
-  let dishTitle = document.createElement("p");
-  dishTitle.textContent = dish.name;
-
-  dishItem.appendChild(dishTitle);
-  container.appendChild(dishItem); */
 }

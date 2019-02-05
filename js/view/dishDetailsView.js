@@ -1,13 +1,7 @@
-/* 
-class dishDetailsViewController{
- constructor(view, model) {
 
-    view.addToMenu.addEventListener("click", 
-        () => {model.addDishToMenu(model.currentDish.id);} );
-  }
-} */
 
-var dishDetailsView = function(container,model){
+class dishDetailsView{
+  constructor(container,model){
   this.container = container;
   this.ingregientsDiv = container[0].querySelector(".ingredients");
   
@@ -93,7 +87,10 @@ var dishDetailsView = function(container,model){
   this.ingregientsDiv.appendChild(this.ingredientList)
 
 
- this.update = () =>{
+ model.addObserver(this.update.bind(this));
+}
+
+ update(model, changedetails){
   this.ingregientsDiv.innerHTML ="";
   
   this.nGuests = this.model.numberGuests;
@@ -162,5 +159,4 @@ var dishDetailsView = function(container,model){
   this.ingregientsDiv.appendChild(this.ingredientList)
 
  }
- model.addObserver(this.update);
 }

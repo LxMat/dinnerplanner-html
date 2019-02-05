@@ -1,4 +1,5 @@
-var dinnerPrintoutView = function(container,model){
+class dinnerPrintoutView{
+  constructor(container,model){
   this.lorem = "	Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est velit rerum ex. Ratione repudiandae praesentium et porro non nam quos explicabo a veniam distinctio incidunt ipsam corporis, eveniet, asperiores dicta. "
 
   this.container = container; 
@@ -64,7 +65,11 @@ var dinnerPrintoutView = function(container,model){
   
   container[0].appendChild(this.printout);
 
-  this.update = ()=>{
+  
+  this.model.addObserver(this.update.bind(this));
+}
+
+update(model,changedetails){
     this.printout.innerHTML="";
     this.menu = model.getFullMenu();
   
@@ -114,5 +119,4 @@ var dinnerPrintoutView = function(container,model){
   
 
   }
-  this.model.addObserver(this.update);
 }
