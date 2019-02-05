@@ -24,7 +24,7 @@ var dinnerOverView = function(container,model){
   this.menu.forEach(dish => {
     let dItem = document.createElement("div");
     dItem.setAttribute("class","mx-auto")
-    let dItemView = new dishItemView(dItem,dish.id,model);
+    let dItemView = new dishItemView(dItem,model,dish.id);
     let price = model.dishPrice(dish.ingredients);
     let spanE = document.createElement("span");
     spanE.innerText = `SEK ${price}`;

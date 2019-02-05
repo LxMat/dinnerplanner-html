@@ -1,14 +1,5 @@
 
-
-class contentViewController{
- constructor(view, model) {
-
-    view.searchButton.addEventListener("click", 
-        () => {view.update(model);} );
-  }
-}
-
-var contentView = function(container,model){
+var searchView = function(container,model){
   this.container = container
   
   
@@ -16,33 +7,35 @@ var contentView = function(container,model){
   let div = document.createElement('div');
   div.setAttribute("class","dishItemView");
   this.searchResult = container[0].querySelector(".searchResult");
-  this.searchResult.innerHTML = "";   
+  this.searchResult.innerHTML = "";
   
     dishes.forEach(dish => {
-      /* let dishItem = document.createElement("div");
-      dishItem.setAttribute("class","dishItem");
+      let dishItem = document.createElement("div");
+      
+      let dItem = document.createElement("div");
+      dItem.setAttribute("class","dishItemContainer p-2")
+      
+      let dItemView = new dishItemView(dishItem,model,dish.id);
+      this.searchResult.appendChild(dishItem);
+    });
+    
+    /*dishItem.setAttribute("class","dishItem");
       let img = document.createElement('img');
       img.src = `images/${dish.adress}`;
       dishItem.appendChild(img);
       let dishTitle = document.createElement("p");
       dishTitle.textContent = dish.name;
       dishItem.appendChild(dishTitle); */
-      let dItem = document.createElement("div");
-      dItem.setAttribute("class","dishItemContainer p-2")
-      let dItemView = new dishItemView(dItem,dish.id,model);
-      let dishItem = this.dishItemView(model, dish.id);
-      div.appendChild(dishItem);
+      
+      //let dishItem = this.dishItemView(model, dish.id);
+      //div.appendChild(dItemView);
       //container[0].appendChild(div);
-      this.searchResult.appendChild(dItem);
-    });
-    
-    
     
   }
   
   
   //will be moved to a separate file.
-  this.dishItemView = function(model,id){
+  /* this.dishItemView = function(model,id){
     let dish = model.getDish(id);
     let dishItem = document.createElement("div");
     dishItem.setAttribute("class","dishItem");
@@ -53,7 +46,7 @@ var contentView = function(container,model){
     dishTitle.textContent = dish.name;
     dishItem.appendChild(dishTitle);
     return dishItem;
-  }
+  } */
   
   this.model = model;
   this.dishes = this.model.getDishes();
@@ -72,7 +65,7 @@ var contentView = function(container,model){
 
   }
 
-  new contentViewController(this,model);
+  
 
 
 }

@@ -7,18 +7,19 @@ var dinnerPrintoutView = function(container,model){
   this.totalPrice = model.getTotalMenuPrice();
   
   let overViewInfo = document.createElement("div");
-  let myDinner = document.createElement("span");
-  let backButton = document.createElement("input");
+  this.myDinner = document.createElement("span");
+  this.backButton = document.createElement("input");
   
-  myDinner.innerHTML = `My dinner: ${model.getNumberOfGuests()} people`;
-  backButton.setAttribute("type", "button");
-  backButton.setAttribute("value", "go back and edit dinner");
+  this.myDinner.innerHTML = `My dinner: ${model.getNumberOfGuests()} people`;
+  this.backButton.setAttribute("type", "button");
+  this.backButton.setAttribute("value", "go back and edit dinner");
+  this.backButton.setAttribute("class","btn btn-primary btn-sm")
   
-  overViewInfo.appendChild(myDinner);
-  overViewInfo.appendChild(backButton);
+  overViewInfo.appendChild(this.myDinner);
+  overViewInfo.appendChild(this.backButton);
   container[0].appendChild(overViewInfo);
   
-  let printout = document.createElement("div");
+  this.printout = document.createElement("div");
   
   this.menu.forEach(dish => {
     let dishInfo = document.createElement("div");
@@ -56,9 +57,65 @@ var dinnerPrintoutView = function(container,model){
     dishInfo.appendChild(dishSummary);
     dishInfo.appendChild(dishPreparation);
     
-    printout.appendChild(dishInfo);
+    this.printout.appendChild(dishInfo);
   });
   
-  container[0].appendChild(printout);
+  container[0].appendChild(this.printout);
+
+  this.update = ()=>{
+    this.menu = model.getFullMenu();
   
+    this.totalPrice = model.getTotalMenuPrice();
+    
+    let overViewInfo = document.createElement("div");
+    this.myDinner.innerHTML = `My dinner: ${model.getNumberOfGuests()} people`;
+    
+    overViewInfo.appendChild(this.myDinner);
+    overViewInfo.appendChild(this.backButton);
+    container[0].appendChild(overViewInfo); 
+
+
+    this.menu.forEach(dish => {
+      let dishInfo = document.createElement("div");
+      dishInfo.setAttribute("class","row")
+      
+      let dishSummary = document.createElement("div");
+      dishSummary.setAttribute("class","col");
+      let dishPreparation = document.createElement("div");
+      dishPreparation.setAttribute("class","col");
+      
+      let dishImage = document.createElement("img");
+      dishImage.src = `images/${dish.image}`;
+      dishImage.setAttribute("class","col-sm1")
+      let dishTitle = document.createElement("h2");
+      dishTitle.innerText = dish.name;
+      
+      let dishDescription = document.createElement("div");
+      dishDescription.innerText = this.lorem;
+      
+      dishSummary.appendChild(dishImage);
+      dishDescription.prepend(dishTitle);
+      dishSummary.appendChild(dishDescription);
+      
+      let preparationHeader = document.createElement("h2");
+      preparationHeader.innerText = "PREPARATION";
+      
+      let preparationText = document.createElement("div");
+      preparationText.innerText = dish.description;
+      
+      dishPreparation.appendChild(preparationHeader);
+      dishPreparation.appendChild(preparationText);
+      
+  
+      
+      dishInfo.appendChild(dishSummary);
+      dishInfo.appendChild(dishPreparation);
+      
+      this.printout.appendChild(dishInfo);
+      this.container[0].appendChild(this.printout);
+
+    });
+  
+
+  }
 }

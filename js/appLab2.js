@@ -1,4 +1,5 @@
 $(function() {
+
   class GeneralStateController{
     constructor(){
       this.views = {};
@@ -10,11 +11,11 @@ $(function() {
     "sidebarView",
     "overviewView"
     "printView",
-    "contentView",
+    "searchView",
     "detailsView",
     */
 
-   addView(name,v){
+  addView(name,v){
     this.views[name] = v;
   };   
   hideAllViews(){
@@ -22,29 +23,29 @@ $(function() {
         this.views[key].container.hide();
       }
     };
-    getViews(){
-      return this.views;
-    }
-    showDishDetailsScreen(){
-      this.hideAllViews()
-      this.views.sidebarView.container.show()
-      this.views.detailsView.container.show()
-    }
-    showDishSearchScreen(){
-      this.hideAllViews()
-      this.views.sidebarView.container.show()
-      this.views.contentView.container.show()
-    }
-    showDishDinnerOverView(){
-      this.hideAllViews()
-      this.views.overviewView.container.show()
-    }
-    showDishDinnerPrintView(){
-      this.hideAllViews()
-      this.views.printView.container.show()
-    }
-
+  getViews(){
+    return this.views;
   }
+  showDishDetailsScreen(){
+    this.hideAllViews()
+    this.views.sidebarView.container.show()
+    this.views.detailsView.container.show()
+  }
+  showDishSearchScreen(){
+    this.hideAllViews()
+    this.views.sidebarView.container.show()
+    this.views.searchView.container.show()
+  }
+  showDishDinnerOverScreen(){
+    this.hideAllViews()
+    this.views.overviewView.container.show()
+  }
+  showDinnerPrintScreen(){
+    this.hideAllViews()
+    this.views.printView.container.show()
+  }
+
+}
   
   //We instantiate our model
 	var model = new DinnerModel(); 
@@ -55,25 +56,28 @@ $(function() {
   model.addDishToMenu(101);
   model.setNumberOfGuests(2); 
 
-
+  //instantiate the views
   var sidebarView = new exampleView($(".sidebar"),model);
   var dOverView = new dinnerOverView($(".overview"),model);
   var dPrintoutView = new dinnerPrintoutView($(".printout"),model);
-  var contView = new contentView($(".dishSearchView"),model);
+  var searchV = new searchView($(".dishSearchView"),model);
   var dishDetailV = new dishDetailsView($(".detailsView"),model);
   
-  var exampleVController = new ExampleViewController(sidebarView,model);
-  var dishDetailsVController = new dishDetailsViewController(dishDetailV,model);
-
   genStateController.addView("sidebarView",sidebarView);
   genStateController.addView("overviewView",dOverView);
   genStateController.addView("printView",dPrintoutView);
-  genStateController.addView("contentView",contView);
+  genStateController.addView("searchView",searchV);
   genStateController.addView("detailsView",dishDetailV); 
+
+  var exampleVController = new ExampleViewController(sidebarView,model,genStateController);
+  var dishDetailsVController = new dishDetailsViewController(dishDetailV,model,genStateController);
+  var searchVController = new searchViewController(searchV,model,genStateController);
+  var prinoutController = new dishPrintoutController(dPrintoutView,model,genStateController);
+  
 
   genStateController.hideAllViews();
   genStateController.showDishSearchScreen();
-//genStateController.showDishDinnerPrintView();
+  //genStateController.showDishDinnerPrintView();
  //genStateController.showDishDinnerOverView();
 
 

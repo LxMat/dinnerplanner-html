@@ -93,12 +93,12 @@ var exampleView = function (container, model) {
 	this.plusButton = container.find("#plusGuest")[0];
 	this.minusButton = container.find("#minusGuest")[0];
 	
-	this.comfirmbtn = document.createElement("input");
-	this.comfirmbtn.setAttribute("type","button");
-	this.comfirmbtn.setAttribute("class", "btn-sm btn-primary")
-	this.comfirmbtn.setAttribute("value","Confirm Dinner");
+	this.confirmbtn = document.createElement("input");
+	this.confirmbtn.setAttribute("type","button");
+	this.confirmbtn.setAttribute("class", "btn-sm btn-primary")
+	this.confirmbtn.setAttribute("value","Confirm Dinner");
 	let btnDiv = document.createElement("div")
-	btnDiv.appendChild(this.comfirmbtn)
+	btnDiv.appendChild(this.confirmbtn)
 	currentMenu.appendChild(btnDiv);
 	
 	/**

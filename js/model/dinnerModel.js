@@ -14,14 +14,17 @@ var DinnerModel = function() {
  
 	//TODO Lab 1 implement the data structure that will hold number of guest
 	// and selected dishes for the dinner menu
-	//this.numberGuests = 0;
+	
 	this.menu = [];
-	this.setNumberOfGuests = num => {this.numberGuests=num; this.notifyObservers();}	
+	this.setNumberOfGuests = num => {
+		if(num>=0){
+			this.numberGuests= num;
+			this.notifyObservers();}
+	}	
 	this.getNumberOfGuests = ()=>  this.numberGuests;
-	this.numberGuests = 2;
 
 	//Keep track of current dish
-	console.log()
+	
 	
 	//Returns the dish that is on the menu for selected type 
 	this.getSelectedDish = type => {return dishes.filter(dish => dish.type===type);}
@@ -89,7 +92,9 @@ var DinnerModel = function() {
 		return dishes.filter(function(dish) {
 			var found = true;
 			if(filter){
+				filter = filter.toLowerCase()
 				found = false;
+				
 				dish.ingredients.forEach(function(ingredient) {
 					if(ingredient.name.indexOf(filter)!=-1) {
 						found = true;
@@ -129,6 +134,12 @@ var DinnerModel = function() {
 
 
 
+	this.currentDish = 1;
+	this.getCurrentDish = () => this.getDish(this.currentDish) 
+	this.setCurrentDish =(id) => {
+		this.currentDish = id
+		this.notifyObservers();	
+	};
 
 	// the dishes variable contains an array of all the 
 	// dishes in the database. each dish has id, name, type,
@@ -381,6 +392,5 @@ var DinnerModel = function() {
 		}
 	];
 
-	this.currentDish = this.getDish(2);
 
 }

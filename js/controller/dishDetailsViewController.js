@@ -1,6 +1,8 @@
 class dishDetailsViewController{
-  constructor(view, model) {
-     view.addToMenu.addEventListener("click", 
-         () => {model.addDishToMenu(model.currentDish.id);} );
+  constructor(view, model,generalController) {
+    view.addToMenu.addEventListener("click", 
+      () => {model.addDishToMenu(model.getCurrentDish().id);} );
+    view.dbackButton.addEventListener("click",
+      () => generalController.showDishSearchScreen())
    }
  }
