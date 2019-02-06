@@ -2,195 +2,12 @@
 
 var DinnerModel = function() {
 
-	const spoonApi = new SpoonAPI();
-	this.spoonKey = spoonApi.KEY;
-	
-	this.handleHTTPError = (response) =>  {
-		if(response.ok)
-			 return response;
-		throw Error(response.statusText);
-	}
-
-	let query ={
-		diet:"",
-		exclude:"",
-		instructionsreq:false,
-		intolerances:"",
-		limitLicense:false,
-		number:10,
-		searchquery:"burger",
-		type:"main+course"
-	}
-	let res = []
-
-	 this.getAllDishes = (parameters) =>{
-
-		let {diet,exclude,instructionsreq,intolerances,limitLicense,number,offset,query,type} = parameters;
-
-		//let request = `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?diet=${diet}&excludeIngredients=${exclude}&instructionsRequired=false&intolerances=egg%2C+gluten&limitLicense=false&number=10&offset=0&query=burger&type=main+course`
-		let request = `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?intolerances=egg%2C+gluten&limitLicense=false&number=10&offset=0&query=burger&type=main+course`
-	
-		fetch(request,
-		{headers:{
-			"X-Mashape-Key":this.spoonKey,
-			"content-type":"application/JSON"
-		}})
-		.then(this.handleHTTPError)
-		.then(response => response.json())
-		.then(object => console.log(object.results))
-		.catch(console.error)
-	}
-	this.searchRecipe(query);
-
-	// .map( dish => res.push(
-	// 	{
-	// 	id :dish.id,
-	// 	name:dish.title,
-	// 	image:dish.image
-	// 	}
-	// ))
-	
-
-	this.numberGuests = 0;
-	//Controller code
-	var observers=[];
-    this.addObserver=function(observer){ observers.push(observer); }
-   
-    this.notifyObservers=function(){ 
-        for(var i=0; i<observers.length; i++)
-             observers[i](this); // we assume that observers[i] is a function, so we call it like observers[i](parameters)
-    }
-
-    this.removeObserver=function(observer){ observers.filter(item => item !== observer)}
- 
-	
-	this.menu = [];
-	this.setNumberOfGuests = num => {
-		if(num>=0){
-			this.numberGuests= num;
-			this.notifyObservers();}
-	}	
-	this.getNumberOfGuests = ()=>  this.numberGuests;
-
-	//Keep track of current dish
-	
-	
-	//Returns the dish that is on the menu for selected type 
-	this.getSelectedDish = type => {return dishes.filter(dish => dish.type===type);}
-	
-	//Returns all the dishes on the menu.
-
-	this.getFullMenu =_=>this.menu;
-	
-	//Returns all ingredients for all the dishes on the menu.
-	this.getAllIngredients = function() {
-		//TODO Lab 1
-		let ingredients = []
-		this.menu.forEach(menuItem=>{
-			menuItem.ingredients.forEach(ingredient => {
-				ingredients.push(ingredient);
-			})
-		});
-		return ingredients;
-	}
-	this.dishPrice = (ingredients)=>{
-		let sum= 0;
-		ingredients.forEach(ingredient =>{
-			sum+= ingredient.price;
-		})
-		return sum;
-	}
-	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
-	this.getTotalMenuPrice = function() {
-		let sum = 0;
-		
-		this.menu.forEach(menuItem=>{
-			menuItem.ingredients.forEach(ingredient => {
-				sum += ingredient.price;
-			})
-		});
-		return sum*this.numberGuests;
-		//TODO Lab 1
-	}
-	
-	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
-	//it is removed from the menu and the new one added.
-	this.addDishToMenu = id => {
-		let dish = this.getDish(id);		  
-		for(let i = this.menu.length - 1 ;i>=0;i--){
-			if(this.menu[i].type == dish.type){
-				this.menu.splice(i,1);
-			}
-		}
-		 this.menu.push(dish);
-		 this.notifyObservers();
-		 
-		}
-		
-	//Removes dish from menu
-	this.removeDishFromMenu = function(id) {
-		this.menu = this.menu.filter(menuDish => menuDish.id != id);
-		this.notifyObservers();
-		//TODO Lab 1
-	}
-	
-	//function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
-	//you can use the filter argument to filter out the dish by name or ingredient (use for search)
-	//if you don't pass any filter all the dishes will be returned
-	this.searchDishes = function (type,filter) {
-		return dishes.filter(function(dish) {
-			var found = true;
-			if(filter){
-				filter = filter.toLowerCase()
-				found = false;
-				
-				dish.ingredients.forEach(function(ingredient) {
-					if(ingredient.name.indexOf(filter)!=-1) {
-						found = true;
-					}
-				});
-				if(dish.name.indexOf(filter) != -1)
-				{
-					found = true;
-				}
-			}
-			return dish.type == type && found;
-		});	
-	}
-	
-	//function that returns a dish of specific ID
-	this.getDish = function (id) {
-		for(key in dishes){
-			if(dishes[key].id == id) {
-				return dishes[key];
-			}
-		}
-	}
-	
-
-	
-	//returns all dishes
-	this.getDishes = _ =>{
-		return dishes
-			.map(dish => {
-				return {
-					id:dish.id,
-					name:dish.name,
-					adress:dish.image
-					}
-				});
-	}
 
 
 
-	this.currentDish = 1;
-	this.getCurrentDish = () => this.getDish(this.currentDish) 
-	this.setCurrentDish =(id) => {
-		this.currentDish = id
-		this.notifyObservers();	
-	};
 
-	// the dishes variable contains an array of all the 
+
+// the dishes variable contains an array of all the 
 	// dishes in the database. each dish has id, name, type,
 	// image (name of the image file), description and
 	// array of ingredients. Each ingredient has name, 
@@ -441,5 +258,236 @@ var DinnerModel = function() {
 		}
 	];
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	const spoonApi = new SpoonAPI();
+	this.spoonKey = spoonApi.KEY;
+	
+	this.handleHTTPError = (response) =>  {
+		if(response.ok)
+			 return response;
+		throw Error(response.statusText);
+	}
+
+
+	// 'id':1,
+	// 'name':'French toast',
+	// 'type':'starter',
+	// 'image':'toast.jpg',
+	// 'description':"In a large mixing bowl, beat the eggs. Add the milk, brown sugar and nutmeg; stir well to combine. Soak bread slices in the egg mixture until saturated. Heat a lightly oiled griddle or frying pan over medium high heat. Brown slices on both sides, sprinkle with cinnamon and serve hot.",
+	// 'ingredients':[{ 
+	// 	'name':'eggs',
+	// 	'quantity':0.5,
+	// 	'unit':'',
+	// 	'price':10
+	// 	}
+
+
+	let query ={
+		diet:"",
+		exclude:"",
+		instructionsreq:false,
+		intolerances:"",
+		limitLicense:false,
+		number:10,
+		searchquery:"burger",
+		type:"main+course"
+	}
+	let res = []
+
+	 this.getAllDishes = (parameters) =>{
+		
+		let {diet,exclude,instructionsreq,intolerances,limitLicense,number,offset,query,type} = parameters;
+
+		//let request = `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?diet=${diet}&excludeIngredients=${exclude}&instructionsRequired=false&intolerances=egg%2C+gluten&limitLicense=false&number=10&offset=0&query=burger&type=main+course`
+		let request = `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?intolerances=egg%2C+gluten&limitLicense=false&number=10&offset=0&query=burger&type=main+course`
+		console.log(dishes);
+		dishes = [];
+		fetch(request,
+		{headers:{
+			"X-Mashape-Key":this.spoonKey,
+			"content-type":"application/JSON"
+		}})
+		.then(this.handleHTTPError)
+		.then(response => response.json())
+		.then(object => object.results.map(dish => {
+			dishes.push({
+				id:dish.id,
+				name:dish.title,
+				type:"main course",
+				image:dish.image,
+				ingredients:[""]
+				})
+		}))
+		.then(this.notifyObservers)
+		.catch(console.error)
+	}
+	this.getAllDishes(query);
+	
+	// .map( dish => res.push(
+	// 	{
+	// 	id :dish.id,
+	// 	name:dish.title,
+	// 	image:dish.image
+	// 	}
+	// ))
+	
+
+	this.numberGuests = 0;
+	//Controller code
+	var observers=[];
+    this.addObserver=function(observer){ observers.push(observer); }
+   
+    this.notifyObservers=function(){ 
+        for(var i=0; i<observers.length; i++)
+             observers[i](this); // we assume that observers[i] is a function, so we call it like observers[i](parameters)
+    }
+
+    this.removeObserver=function(observer){ observers.filter(item => item !== observer)}
+ 
+	
+	this.menu = [];
+	this.setNumberOfGuests = num => {
+		if(num>=0){
+			this.numberGuests= num;
+			this.notifyObservers();}
+	}	
+	this.getNumberOfGuests = ()=>  this.numberGuests;
+
+	//Keep track of current dish
+	
+	
+	//Returns the dish that is on the menu for selected type 
+	this.getSelectedDish = type => {return dishes.filter(dish => dish.type===type);}
+	
+	//Returns all the dishes on the menu.
+
+	this.getFullMenu =_=>this.menu;
+	
+	//Returns all ingredients for all the dishes on the menu.
+	this.getAllIngredients = function() {
+		//TODO Lab 1
+		let ingredients = []
+		this.menu.forEach(menuItem=>{
+			menuItem.ingredients.forEach(ingredient => {
+				ingredients.push(ingredient);
+			})
+		});
+		return ingredients;
+	}
+	this.dishPrice = (ingredients)=>{
+		let sum= 0;
+		ingredients.forEach(ingredient =>{
+			sum+= ingredient.price;
+		})
+		return sum;
+	}
+	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
+	this.getTotalMenuPrice = function() {
+		let sum = 0;
+		
+		this.menu.forEach(menuItem=>{
+			menuItem.ingredients.forEach(ingredient => {
+				sum += ingredient.price;
+			})
+		});
+		return sum*this.numberGuests;
+		//TODO Lab 1
+	}
+	
+	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
+	//it is removed from the menu and the new one added.
+	this.addDishToMenu = id => {
+		let dish = this.getDish(id);		  
+		for(let i = this.menu.length - 1 ;i>=0;i--){
+			if(this.menu[i].type == dish.type){
+				this.menu.splice(i,1);
+			}
+		}
+		 this.menu.push(dish);
+		 this.notifyObservers();
+		 
+		}
+		
+	//Removes dish from menu
+	this.removeDishFromMenu = function(id) {
+		this.menu = this.menu.filter(menuDish => menuDish.id != id);
+		this.notifyObservers();
+		//TODO Lab 1
+	}
+	
+	//function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
+	//you can use the filter argument to filter out the dish by name or ingredient (use for search)
+	//if you don't pass any filter all the dishes will be returned
+	this.searchDishes = function (type,filter) {
+		return dishes.filter(function(dish) {
+			var found = true;
+			if(filter){
+				filter = filter.toLowerCase()
+				found = false;
+				
+				dish.ingredients.forEach(function(ingredient) {
+					if(ingredient.name.indexOf(filter)!=-1) {
+						found = true;
+					}
+				});
+				if(dish.name.indexOf(filter) != -1)
+				{
+					found = true;
+				}
+			}
+			return dish.type == type && found;
+		});	
+	}
+	
+	//function that returns a dish of specific ID
+	this.getDish = function (id) {
+		for(key in dishes){
+			if(dishes[key].id == id) {
+				return dishes[key];
+			}
+		}
+	}
+	
+
+	
+	//returns all dishes
+	this.getDishes = _ =>{
+		return dishes
+			.map(dish => {
+				return {
+					id:dish.id,
+					name:dish.name,
+					adress:dish.image
+					}
+				});
+	}
+
+
+
+	this.currentDish = dishes[0].id;
+	this.getCurrentDish = () => this.getDish(this.currentDish) 
+	this.setCurrentDish =(id) => {
+		this.currentDish = id
+		this.notifyObservers();	
+	};
+
+
+
+	
 
 }
