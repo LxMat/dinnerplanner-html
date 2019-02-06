@@ -1,5 +1,56 @@
 //DinnerModel Object constructor
+
 var DinnerModel = function() {
+
+	const spoonApi = new SpoonAPI();
+	this.spoonKey = spoonApi.KEY;
+	
+	this.handleHTTPError = (response) =>  {
+		if(response.ok)
+			 return response;
+		throw Error(response.statusText);
+	}
+
+	let query ={
+		diet:"",
+		exclude:"",
+		instructionsreq:false,
+		intolerances:"",
+		limitLicense:false,
+		number:10,
+		searchquery:"burger",
+		type:"main+course"
+	}
+	let res = []
+
+	 this.searchRecipe = (parameters) =>{
+
+		let {diet,exclude,instructionsreq,intolerances,limitLicense,number,offset,query,type} = parameters;
+
+		//let request = `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?diet=${diet}&excludeIngredients=${exclude}&instructionsRequired=false&intolerances=egg%2C+gluten&limitLicense=false&number=10&offset=0&query=burger&type=main+course`
+		let request = `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?intolerances=egg%2C+gluten&limitLicense=false&number=10&offset=0&query=burger&type=main+course`
+	
+		fetch(request,
+		{headers:{
+			"X-Mashape-Key":this.spoonKey,
+			"content-type":"application/JSON"
+		}})
+		.then(this.handleHTTPError)
+		.then(response => response.json())
+		.then(object => console.log(object.results))
+		.catch(console.error)
+	}
+	this.searchRecipe(query);
+
+	// .map( dish => res.push(
+	// 	{
+	// 	id :dish.id,
+	// 	name:dish.title,
+	// 	image:dish.image
+	// 	}
+	// ))
+	
+
 	this.numberGuests = 0;
 	//Controller code
 	var observers=[];
