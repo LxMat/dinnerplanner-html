@@ -479,7 +479,6 @@ var DinnerModel = function() {
 
 
 
-	this.currentDish = dishes[0].id;
 	this.getCurrentDish = () => this.getDish(this.currentDish) 
 	this.setCurrentDish =(id) => {
 		this.currentDish = id
