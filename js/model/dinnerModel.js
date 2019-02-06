@@ -23,7 +23,7 @@ var DinnerModel = function() {
 	}
 	let res = []
 
-	 this.searchRecipe = (parameters) =>{
+	 this.getAllDishes = (parameters) =>{
 
 		let {diet,exclude,instructionsreq,intolerances,limitLicense,number,offset,query,type} = parameters;
 
