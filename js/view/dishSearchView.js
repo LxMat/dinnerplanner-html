@@ -12,6 +12,8 @@ class searchView{
   this.selectSearch = container.find(".selectSearch")[0];
   this.searchButton = container.find(".searchButton")[0];
 
+  model.addObserver(this.update.bind(this));
+
 }
 
   update(model, changedetails) {
