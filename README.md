@@ -1,7 +1,10 @@
 **Lab 1**
  - Done
+
 **Lab 2** 
  - Done
+ 
+ 
 **Lab 3** (uses index-Lab3.html and appLab2.js)
  - can search for food
  - uses a loading image when searching
