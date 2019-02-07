@@ -276,7 +276,7 @@ var DinnerModel = function() {
 
 	const spoonApi = new SpoonAPI();
 	this.spoonKey = spoonApi.KEY;
-	
+	this.loadingDone = true;
 	this.handleHTTPError = (response) =>  {
 		if(response.ok)
 			 return response;
@@ -297,6 +297,22 @@ var DinnerModel = function() {
 	// 	}
 
 
+		//Controller code
+		var observers=[];
+    this.addObserver=function(observer){ observers.push(observer); }
+   
+    this.notifyObservers=function(){ 
+    	//console.log("notify dish length",dishes.length)
+			
+			
+			console.log("dishes",dishes)
+        for(var i=0; i<observers.length; i++)
+             observers[i](this); // we assume that observers[i] is a function, so we call it like observers[i](parameters)
+    }
+
+    this.removeObserver=function(observer){ observers.filter(item => item !== observer)}
+	
+
 	let query ={
 		diet:"",
 		exclude:"",
@@ -308,35 +324,55 @@ var DinnerModel = function() {
 		type:"main+course"
 	}
 	let res = []
-
+	 	
 	 this.getAllDishes = (parameters) =>{
 		
-		let {diet,exclude,instructionsreq,intolerances,limitLicense,number,offset,query,type} = parameters;
+		let {diet,exclude,instructionsreq,intolerances,limitLicense,number,offset,searchtxt="burger",type} = parameters;
+		
+		//searchtxt =query.searchquery
 
-		//let request = `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?diet=${diet}&excludeIngredients=${exclude}&instructionsRequired=false&intolerances=egg%2C+gluten&limitLicense=false&number=10&offset=0&query=burger&type=main+course`
+		//let searchquery = `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?diet=${diet}&excludeIngredients=${exclude}&instructionsRequired=false&intolerances=egg%2C+gluten&limitLicense=false&number=10&offset=0&query=burger&type=main+course`
+		let searchqueryURL = `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?&&instructionsRequired=false&limitLicense=false&number=10&offset=0&query=${searchtxt}&type=main+course`
 		let request = `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?intolerances=egg%2C+gluten&limitLicense=false&number=10&offset=0&query=burger&type=main+course`
+		
+		//`https://spoonacular.com/recipeImages/${dish.image}`
 		
 		//Experimenting with fetch
 		//dishes = [];
-		return fetch(request,
+		console.log("new request");
+		
+		
+		this.loadingDone = false;
+		this.notifyObservers();
+		return fetch(searchqueryURL,
 		{headers:{
 			"X-Mashape-Key":this.spoonKey,
 			"content-type":"application/JSON"
 		}})
 		.then(this.handleHTTPError)
 		.then(response => response.json())
-		.then(object => {dishes = [];object.results.map(dish => {
+		.then(object => {
+			dishes = [];
+			object.results.map(dish => {
 			dishes.push({
 				id:dish.id,
 				name:dish.title,
 				type:"main dish",
-				image:dish.image,
-				ingredients:[""]
+				image:"infinity.png",
+				imageURL:`https://spoonacular.com/recipeImages/${dish.image}`,
+				ingredients:[{ 
+					'name':'',
+					'quantity':0,
+					'unit':'',
+					'price':1
+					}]
 				})
-		});this.currentDish = dishes[0].id})
-		.then(console.log("done1"))
+		});
+		this.currentDish = dishes[0].id;
+		this.loadingDone = true;
+		})
 		.then(_ => this.notifyObservers())
-		.then(console.log("done2"))
+		.then(console.log("done"))
 		.catch(console.error)
 	}
 	console.log("before getall",dishes);
@@ -350,21 +386,13 @@ var DinnerModel = function() {
 	// 	image:dish.image
 	// 	}
 	// ))
-	
-
+	this.getStoredDishes=() => dishes;
+	this.updateQuery = (query)=>{
+				query.searchquery =query;
+				this.getAllDishes({searchtxt:query})
+			}
 	this.numberGuests = 0;
-	//Controller code
-	var observers=[];
-    this.addObserver=function(observer){ observers.push(observer); }
-   
-    this.notifyObservers=function(){ 
-    	console.log("notify dish length",dishes.length)
-        for(var i=0; i<observers.length; i++)
-             observers[i](this); // we assume that observers[i] is a function, so we call it like observers[i](parameters)
-    }
 
-    this.removeObserver=function(observer){ observers.filter(item => item !== observer)}
-	
 	this.menu = [];
 	this.setNumberOfGuests = num => {
 		if(num>=0){
@@ -439,7 +467,12 @@ var DinnerModel = function() {
 	//you can use the filter argument to filter out the dish by name or ingredient (use for search)
 	//if you don't pass any filter all the dishes will be returned
 	this.searchDishes = function (type,filter) {
-		console.log("searched dish length", dishes.length)
+		query.searchquery = filter;
+		//this.getAllDishes(query);
+		console.log(query)
+		//console.log("searched dish length", dishes.length)
+		
+		
 		return dishes.filter(function(dish) {
 			var found = true;
 			if(filter){

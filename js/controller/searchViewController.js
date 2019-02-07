@@ -6,17 +6,27 @@ class searchViewController{
     this.addEventDishItems() 
   
      view.searchButton.addEventListener("click", 
-         () => {view.update(model);
+         () => {
+
+          this.submitTextEntry();
+          view.update(model);
           this.addEventDishItems();      
         } );
    
      view.textSearch.addEventListener("keyup", 
        event => {
-         if(event.keyCode===13)  view.update(model)
-         this.addEventDishItems();
+         if(event.keyCode===13)  {
+            this.submitTextEntry();  
+            view.update(model)
+            this.addEventDishItems()};
         }
        );
   }
+  submitTextEntry(){
+    let entry = this.view.container[0].querySelector(".textSearch").value;
+    this.model.updateQuery(entry)
+  }
+
   addEventDishItems(){
     this.view.container[0].querySelectorAll(".dishItem")
     .forEach(dishItem => dishItem.addEventListener("click",

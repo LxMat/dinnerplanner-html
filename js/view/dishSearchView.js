@@ -17,14 +17,21 @@ class searchView{
 }
 
   update(model, changedetails) {
+    if(model.loadingDone){
+      this.container.find("#loading").hide()
+      let selectedValue = this.selectSearch.options[this.selectSearch.selectedIndex].value;
+      let searchedDishes = model.searchDishes(selectedValue, this.textSearch.valPue);
+    
 
-    let selectedValue = this.selectSearch.options[this.selectSearch.selectedIndex].value;
-    let searchedDishes = model.searchDishes(selectedValue, this.textSearch.value);
     this.createImgElems(searchedDishes);
-
+    }
+    else{
+      this.searchResult.innerHTML = "";
+      this.container.find("#loading").show()}
   }
 
   createImgElems(dishes) {
+    
     let div = document.createElement('div');
     div.setAttribute("class", "dishItemView");
     this.searchResult = this.container[0].querySelector(".searchResult");

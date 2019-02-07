@@ -8,11 +8,11 @@ var dishItemView = function(container,model,id){
   let img = document.createElement('img');
   img.height = 150;
   img.width = 150;
-  img.src = `images/${dish.image}`;
+  img.src = "images/infinity.png"
+  img.src = dish.imageURL;
   dishItem.appendChild(img);
   let dishTitle = document.createElement("p");
   dishTitle.textContent = dish.name;
   container.appendChild(dishItem);
   container.appendChild(dishTitle);
-
 }

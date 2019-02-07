@@ -58,6 +58,8 @@ $(function() {
   var dPrintoutView = new dinnerPrintoutView($(".printout"),model);
   var searchV = new searchView($(".dishSearchView"),model);
   var dishDetailV = new dishDetailsView($(".detailsView"),model);
+  var loader = $("#loading")
+  loader.hide();
   
   genStateController.addView("sidebarView",sidebarV);
   genStateController.addView("overviewView",dOverView);
@@ -72,16 +74,16 @@ $(function() {
   var overviewController = new dishOverviewController(dOverView,model,genStateController);  
 
   genStateController.hideAllViews();
+  genStateController.showDishSearchScreen();
 
 
 
-
-  this.welcomeDiv = document.querySelector("#welcome-wrapper")
-  this.welcomebtn = document.querySelector("#welcomebtn");
-  this.welcomebtn.addEventListener("click",
-    ()=>{this.welcomeDiv.style.display = "none";
-        genStateController.showDishSearchScreen();
-    })
+  // this.welcomeDiv = document.querySelector("#welcome-wrapper")
+  // this.welcomebtn = document.querySelector("#welcomebtn");
+  // this.welcomebtn.addEventListener("click",
+  //   ()=>{this.welcomeDiv.style.display = "none";
+  //       genStateController.showDishSearchScreen();
+  //   })
 
 
 });
