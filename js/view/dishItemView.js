@@ -13,7 +13,7 @@ var dishItemView = function (container, model, id) {
   dishItem.appendChild(img);
   let dishTitle = document.createElement("p");
   console.log(typeof(dish.name))
-  let dishText = (dish.name.length>20)?`${dish.name.slice(0,15)}..`:dish.name
+  let dishText = (dish.name.length>15)?`${dish.name.slice(0,15)}..`:dish.name
   dishTitle.textContent = dishText;
   container.appendChild(dishItem);
   container.appendChild(dishTitle);
