@@ -388,13 +388,7 @@ var DinnerModel = function () {
 	this.getAllDishes(query);
 	console.log("after getall", dishes);
 
-	// .map( dish => res.push(
-	// 	{
-	// 	id :dish.id,
-	// 	name:dish.title,
-	// 	image:dish.image
-	// 	}
-	// ))
+
 	this.getStoredDishes = () => dishes;
 	this.updateQuery = (query) => {
 		query.searchquery = query;
@@ -481,7 +475,6 @@ var DinnerModel = function () {
 	//if you don't pass any filter all the dishes will be returned
 	this.searchDishes = function (type, filter) {
 		query.searchquery = filter;
-		//this.getAllDishes(query);
 		console.log(query)
 		//console.log("searched dish length", dishes.length)
 
