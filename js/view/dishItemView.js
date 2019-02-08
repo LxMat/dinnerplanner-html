@@ -3,7 +3,7 @@ var dishItemView = function (container, model, id) {
   this.model = model
   let dish = this.model.getDish(this.id);
   let dishItem = document.createElement("div");
-  dishItem.setAttribute("class", "dishItem card");
+  dishItem.setAttribute("class", "dishItem card loading");
   dishItem.id = this.id;
   let img = document.createElement('img');
   img.height = 150;

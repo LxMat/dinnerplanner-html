@@ -13,3 +13,7 @@ nav.sidebar{
   margin: auto;
   width: 50%;
 }
+.loading{
+  background: transparent url(images/Infinity.png) no-repeat scroll center center;
+
+}
