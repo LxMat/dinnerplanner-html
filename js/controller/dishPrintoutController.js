@@ -1,6 +1,6 @@
-class dishPrintoutController{
-  constructor(view,model,generalController){
+class dishPrintoutController {
+  constructor(view, model, generalController) {
     view.backButton.addEventListener("click",
-      ()=>generalController.showDishSearchScreen())
+      () => generalController.showDishSearchScreen())
   }
 }

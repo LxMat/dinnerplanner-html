@@ -1,9 +1,9 @@
-class dishOverviewController{
-  constructor(view,model,generalController){
+class dishOverviewController {
+  constructor(view, model, generalController) {
     view.backButton.addEventListener("click",
-      ()=> generalController.showDishSearchScreen())
+      () => generalController.showDishSearchScreen())
     view.printReceiptButton.addEventListener("click",
-      ()=> generalController.showDinnerPrintScreen())
+      () => generalController.showDinnerPrintScreen())
   }
 
 

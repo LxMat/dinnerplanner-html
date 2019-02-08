@@ -1,37 +1,37 @@
-class searchView{
-  constructor (container, model) {
-  this.container = container
+class searchView {
+  constructor(container, model) {
+    this.container = container
 
 
-  this.model = model;
-  this.dishes = this.model.getDishes();
-  this.dish = this.dishes[0];
-  this.createImgElems(this.dishes);
+    this.model = model;
+    this.dishes = this.model.getDishes();
+    this.dish = this.dishes[0];
+    this.createImgElems(this.dishes);
 
-  this.textSearch = container.find(".textSearch")[0];
-  this.selectSearch = container.find(".selectSearch")[0];
-  this.searchButton = container.find(".searchButton")[0];
+    this.textSearch = container.find(".textSearch")[0];
+    this.selectSearch = container.find(".selectSearch")[0];
+    this.searchButton = container.find(".searchButton")[0];
 
-  model.addObserver(this.update.bind(this));
+    model.addObserver(this.update.bind(this));
 
-}
+  }
 
   update(model, changedetails) {
-    if(model.loadingDone){
+    if (model.loadingDone) {
       this.container.find("#loading").hide()
       let selectedValue = this.selectSearch.options[this.selectSearch.selectedIndex].value;
       let searchedDishes = model.searchDishes(selectedValue, this.textSearch.valPue);
-    
 
-    this.createImgElems(searchedDishes);
-    }
-    else{
+
+      this.createImgElems(searchedDishes);
+    } else {
       this.searchResult.innerHTML = "";
-      this.container.find("#loading").show()}
+      this.container.find("#loading").show()
+    }
   }
 
   createImgElems(dishes) {
-    
+
     let div = document.createElement('div');
     div.setAttribute("class", "dishItemView");
     this.searchResult = this.container[0].querySelector(".searchResult");
