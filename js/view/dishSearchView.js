@@ -24,6 +24,8 @@ class searchView {
 
 
       this.createImgElems(searchedDishes);
+
+      this.container[0].dispatchEvent(new Event("loaded"));
     } else {
       this.searchResult.innerHTML = "";
       this.container.find("#loading").show()

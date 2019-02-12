@@ -22,6 +22,11 @@ class searchViewController {
         };
       }
     );
+
+    view.container[0].addEventListener("loaded",
+      () => {
+        this.addEventDishItems();
+      });
   }
   submitTextEntry() {
     let entry = this.view.container[0].querySelector(".textSearch").value;
