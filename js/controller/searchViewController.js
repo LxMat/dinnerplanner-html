@@ -9,8 +9,9 @@ class searchViewController {
       () => {
 
         this.submitTextEntry();
-        view.update(model);
-        this.addEventDishItems();
+        view.update(model)
+        .then(this.addEventDishItems())
+        .catch(console.log)
       });
 
     view.textSearch.addEventListener("keyup",
@@ -18,7 +19,7 @@ class searchViewController {
         if (event.keyCode === 13) {
           this.submitTextEntry();
           view.update(model)
-          this.addEventDishItems()
+          .then(this.addEventDishItems())
         };
       }
     );
@@ -26,7 +27,7 @@ class searchViewController {
   submitTextEntry() {
     let entry = this.view.container[0].querySelector(".textSearch").value;
     let type = this.view.container[0].querySelector(".selectSearch").value;
-    this.model.updateQuery(entry)
+    this.model.updateQuery(entry,type)
   }
 
   addEventDishItems() {

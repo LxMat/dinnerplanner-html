@@ -1,19 +1,24 @@
-var dishItemView = function (container, model, id) {
-  this.id = id;
-  this.model = model
-  let dish = this.model.getDish(this.id);
+// id: 1073176
+// image: "no-knead-pizza-dough-pizza-margherita-1073176.jpg"
+// imageUrls: ["no-knead-pizza-dough-pizza-margherita-1073176.jpg"]
+// readyInMinutes: 25
+// servings: 5
+// title: "No Knead Pizza Dough – Pizza Margherita"
+
+var dishItemView = function (container, model, dish) {
+  console.log(dish)
+  //let dish = this.model.getDish(this.id);
   let dishItem = document.createElement("div");
   dishItem.setAttribute("class", "dishItem card loading");
-  dishItem.id = this.id;
+  dishItem.id = dish.id;
   let img = document.createElement('img');
   img.height = 150;
   img.width = 150;
   img.src = "images/infinity.png"
-  img.src = dish.imageURL;
+  img.src = `https://www.spoonacular.com/recipeImages/${dish.image}`;
   dishItem.appendChild(img);
   let dishTitle = document.createElement("p");
-  console.log(typeof(dish.name))
-  let dishText = (dish.name.length>15)?`${dish.name.slice(0,15)}..`:dish.name
+  let dishText = (dish.title.length>15)?`${dish.title.slice(0,15)}..`:dish.title;
   dishTitle.textContent = dishText;
   container.appendChild(dishItem);
   container.appendChild(dishTitle);
