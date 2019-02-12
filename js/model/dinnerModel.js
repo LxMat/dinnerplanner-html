@@ -2,11 +2,6 @@
 
 var DinnerModel = function () {
 
-
-
-
-
-
 	// the dishes variable contains an array of all the 
 	// dishes in the database. each dish has id, name, type,
 	// image (name of the image file), description and
@@ -257,22 +252,6 @@ var DinnerModel = function () {
 		}]
 	}];
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	const spoonApi = new SpoonAPI();
 	this.spoonKey = spoonApi.KEY;
 	this.loadingDone = true;
@@ -295,7 +274,6 @@ var DinnerModel = function () {
 	// 	'price':10
 	// 	}
 
-
 	//Controller code
 	var observers = [];
 	this.addObserver = function (observer) {
@@ -303,7 +281,6 @@ var DinnerModel = function () {
 	}
 
 	this.notifyObservers = function () {
-
 		console.log("dishes", dishes)
 		for (var i = 0; i < observers.length; i++)
 			observers[i](this); // we assume that observers[i] is a function, so we call it like observers[i](parameters)
@@ -313,42 +290,33 @@ var DinnerModel = function () {
 		observers.filter(item => item !== observer)
 	}
 
+	// let apiParam = {
+	// 	diet: "",
+	// 	exclude: "",
+	// 	instructionsreq: false,
+	// 	intolerances: "",
+	// 	limitLicense: false,
+	// 	number: 10,
+	// 	searchquery: "burger",
+	// 	type: "main+course"
+	// }
 
-	let query = {
-		diet: "",
-		exclude: "",
-		instructionsreq: false,
-		intolerances: "",
-		limitLicense: false,
-		number: 10,
-		searchquery: "burger",
-		type: "main+course"
+
+	let apiParam = {
+		query: "burger",
+		type: "main course"
 	}
 	let res = []
 
 	this.getAllDishes = (parameters) => {
-
-		let {
-			diet,
-			exclude,
-			instructionsreq,
-			intolerances,
-			limitLicense,
-			number,
-			offset,
-			searchtxt = "burger",
-			type
-		} = parameters;
-
+		let searchParams = new URLSearchParams(parameters);
+		let searchString  = searchParams.toString();
 
 		//let searchquery = `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?diet=${diet}&excludeIngredients=${exclude}&instructionsRequired=false&intolerances=egg%2C+gluten&limitLicense=false&number=10&offset=0&query=burger&type=main+course`
-		let searchqueryURL = `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?&&instructionsRequired=false&limitLicense=false&number=10&offset=0&query=${searchtxt}&type=main+course`
-		let request = `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?intolerances=egg%2C+gluten&limitLicense=false&number=10&offset=0&query=burger&type=main+course`
-
+		let searchqueryURL = `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?${searchString}`
 
 		//Experimenting with fetch
 		console.log("new request");
-
 
 		this.loadingDone = false;
 		this.notifyObservers();
@@ -385,12 +353,12 @@ var DinnerModel = function () {
 			.catch(console.error)
 	}
 	console.log("before getall", dishes);
-	this.getAllDishes(query);
+	this.getAllDishes(apiParam);
 	console.log("after getall", dishes);
 
 
 	this.getStoredDishes = () => dishes;
-	this.updateQuery = (query) => {
+	this.updateQuery = (query,type) => {
 		query.searchquery = query;
 		this.getAllDishes({
 			searchtxt: query
@@ -406,9 +374,7 @@ var DinnerModel = function () {
 		}
 	}
 	this.getNumberOfGuests = () => this.numberGuests;
-
-
-
+	
 	//Returns the dish that is on the menu for selected type 
 	this.getSelectedDish = type => {
 		return dishes.filter(dish => dish.type === type);
@@ -474,8 +440,8 @@ var DinnerModel = function () {
 	//you can use the filter argument to filter out the dish by name or ingredient (use for search)
 	//if you don't pass any filter all the dishes will be returned
 	this.searchDishes = function (type, filter) {
-		query.searchquery = filter;
-		console.log(query)
+		apiParam.searchquery = filter;
+		console.log(apiParam)
 		//console.log("searched dish length", dishes.length)
 
 

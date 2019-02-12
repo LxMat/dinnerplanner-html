@@ -25,6 +25,7 @@ class searchViewController {
   }
   submitTextEntry() {
     let entry = this.view.container[0].querySelector(".textSearch").value;
+    let type = this.view.container[0].querySelector(".selectSearch").value;
     this.model.updateQuery(entry)
   }
 
