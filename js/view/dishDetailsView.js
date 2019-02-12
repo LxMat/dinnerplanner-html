@@ -8,7 +8,12 @@ class dishDetailsView {
 
     this.nGuests = this.model.numberGuests;
     this.dish = this.model.getCurrentDish();
-    this.ingredients = this.dish.ingredients;
+    this.ingredients = [{
+      'name': 'eggs',
+      'quantity': 0.5,
+      'unit': '',
+      'price': 10
+    }]//TO BE FIXED//this.dish.ingredients;
 
 
     this.dishDetails = container[0].querySelector(".dishDetails");
@@ -92,8 +97,13 @@ class dishDetailsView {
     this.ingregientsDiv.innerHTML = "";
 
     this.nGuests = this.model.numberGuests;
-    this.dish = this.model.getCurrentDish();
-    this.ingredients = this.dish.ingredients;
+    this.dish = this.model.getDish(1);//this.model.getCurrentDish();
+    this.ingredients = this.ingredients = [{
+      'name': 'eggs',
+      'quantity': 0.5,
+      'unit': '',
+      'price': 10
+    }]//TO BE FIXED//this.dish.ingredients;
 
     this.dishDetails.innerHTML = "";
 
@@ -104,8 +114,9 @@ class dishDetailsView {
     let dImg = document.createElement("img");
     let dishDesc = document.createElement("p");
 
-
-    dHeader.innerHTML = this.dish.name;
+    //TO BE FIXED
+    console.log(model.currentDish);
+    dHeader.innerHTML = this.dish.title;
     dImg.src = `images/${this.dish.image}`;
     dishDesc.innerHTML = this.dish.description;
 

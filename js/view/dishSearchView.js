@@ -1,12 +1,10 @@
 class searchView {
   constructor(container, model) {
     this.container = container
-
-
-    this.model = model;
-    this.dishes = this.model.getDishes();
-    this.dish = this.dishes[0];
-    this.createImgElems(this.dishes);
+    
+    //this.dishes = this.model.getDishes();
+    //this.dish = this.dishes[0];
+    //this.createImgElems(this.dishes);
 
     this.textSearch = container.find(".textSearch")[0];
     this.selectSearch = container.find(".selectSearch")[0];
@@ -17,23 +15,16 @@ class searchView {
   }
 
   update(model, changedetails) {
-    if (model.loadingDone) {
-      this.container.find("#loading").hide()
+     //this.container.find("#loading").hide()
       let selectedValue = this.selectSearch.options[this.selectSearch.selectedIndex].value;
-      let searchedDishes = model.searchDishes(selectedValue, this.textSearch.valPue);
+      let searchedDishes = model.getAllDishes()
+      .then(response=> {this.createImgElems(response.results);this.container[0].dispatchEvent(new Event("loaded"))})
+      .catch(console.error) 
+      } 
 
-
-      this.createImgElems(searchedDishes);
-
-      this.container[0].dispatchEvent(new Event("loaded"));
-    } else {
-      this.searchResult.innerHTML = "";
-      this.container.find("#loading").show()
-    }
-  }
 
   createImgElems(dishes) {
-
+    console.log(dishes);
     let div = document.createElement('div');
     div.setAttribute("class", "dishItemView");
     this.searchResult = this.container[0].querySelector(".searchResult");
@@ -45,7 +36,7 @@ class searchView {
       let dItem = document.createElement("div");
       dItem.setAttribute("class", "dishItemContainer p-2")
 
-      let dItemView = new dishItemView(dishItem, this.model, dish.id);
+      let dItemView = new dishItemView(dishItem, this.model, dish);
       this.searchResult.appendChild(dishItem);
     });
 
