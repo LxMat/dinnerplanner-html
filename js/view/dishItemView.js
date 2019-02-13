@@ -13,7 +13,7 @@ var dishItemView = function (container, model, dish) {
   let img = document.createElement('img');
   img.height = 150;
   img.width = 150;
-  img.src = `https://www.spoonacular.com/recipeImages/${dish.image}`;
+  img.src = dish.image.includes("http") ? dish.image : `https://www.spoonacular.com/recipeImages/${dish.image}`;
   dishItem.appendChild(img);
   let dishTitle = document.createElement("p");
   let dishText = (dish.title.length>15)?`${dish.title.slice(0,15)}..`:dish.title;
