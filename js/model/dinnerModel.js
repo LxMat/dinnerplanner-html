@@ -48,6 +48,7 @@ var DinnerModel = function () {
 	const spoonApi = new SpoonAPI();
 	this.spoonKey = spoonApi.KEY;
 	this.loadingDone = true;
+	this.type = "main course"
 	this.handleHTTPError = (response) => {
 		if (response.ok)
 			return response;
@@ -97,9 +98,12 @@ var DinnerModel = function () {
 
 	let apiParam = {
 		query: "burger",
-		type: "main course"
+		type: this.type
 	}
 
+
+	this.setCurrentType = t => this.type = t;
+	this.getCurrentType = _ => this.type;
 
 	this.updateQuery = (query,type) => {
 		apiParam.query = query;
@@ -133,7 +137,7 @@ var DinnerModel = function () {
 				this.loadingDone = true;
 				//this.notifyObservers("SearchDone")
 				return response.json();})
-			.catch(console.error)
+			.catch(e => console.error("error "+ e))
 	}
 
 
@@ -209,7 +213,9 @@ var DinnerModel = function () {
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = id => {
 		//let dish = ""
+		
 		this.getPromiseDish(id).then(dish => {
+			dish.type = this.getCurrentType();
 			for (let i = this.menu.length - 1; i >= 0; i--) {
 				if (this.menu[i].type == dish.type) {
 					this.menu.splice(i, 1);

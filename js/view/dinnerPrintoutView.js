@@ -76,7 +76,6 @@ class dinnerPrintoutView {
     this.totalPrice = model.getTotalMenuPrice();
     this.myDinner.innerHTML = `My dinner: ${model.getNumberOfGuests()} people`;
 
-
     this.menu.forEach(dish => {
       let dishInfo = document.createElement("div");
       dishInfo.setAttribute("class", "row")
@@ -90,7 +89,7 @@ class dinnerPrintoutView {
       dishImage.src = dish.image;
       dishImage.setAttribute("class", "col-sm1")
       let dishTitle = document.createElement("h2");
-      dishTitle.innerText = dish.name;
+      dishTitle.innerText = dish.title;
 
       let dishDescription = document.createElement("div");
       dishDescription.innerText = this.lorem;
@@ -103,7 +102,7 @@ class dinnerPrintoutView {
       preparationHeader.innerText = "PREPARATION";
 
       let preparationText = document.createElement("div");
-      preparationText.innerText = dish.description;
+      preparationText.innerText = dish.instructions;
 
       dishPreparation.appendChild(preparationHeader);
       dishPreparation.appendChild(preparationText);
