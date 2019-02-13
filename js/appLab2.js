@@ -58,6 +58,7 @@ $(function () {
   var dPrintoutView = new dinnerPrintoutView($(".printout"), model);
   var searchV = new searchView($(".dishSearchView"), model);
   var dishDetailV = new dishDetailsView($(".detailsView"), model);
+  //var loader = new loadingView(loader,model)
   var loader = $("#loading")
   loader.hide();
 

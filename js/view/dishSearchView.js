@@ -16,10 +16,16 @@ class searchView {
   update(model, changedetails) {
     if (changedetails === "SearchSubmit") {
       //this.container.find("#loading").hide()
+      //this.container[0].dispatchEvent(new Event("loading"))
+      this.searchResult = this.container[0].querySelector(".searchResult");
+      this.searchResult.innerHTML = "";
+      this.container.find($(".loader")).show()
       let selectedValue = this.selectSearch.options[this.selectSearch.selectedIndex].value;
       let searchedDishes = model.getAllDishes()
-        .then(response => {
-          this.createImgElems(response.results);
+      .then(response => {
+        
+        this.createImgElems(response.results);
+        this.container.find($(".loader")).hide()
           this.container[0].dispatchEvent(new Event("loaded"))
         })
         .catch(console.error)
@@ -31,7 +37,7 @@ class searchView {
     let div = document.createElement('div');
     div.setAttribute("class", "dishItemView");
     this.searchResult = this.container[0].querySelector(".searchResult");
-    this.searchResult.innerHTML = "";
+   
 
     dishes.forEach(dish => {
       let dishItem = document.createElement("div");

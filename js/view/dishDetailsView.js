@@ -183,8 +183,10 @@ class dishDetailsView {
     
     
     //TO BE FIXED
+    this.container.find($(".loader")).show()
     model.getInstructions(model.currentDish)
     .then(response => {
+      this.container.find($(".loader")).hide()
       this.createPrepDiv(response)
       this.createTable(response.extendedIngredients)    
     })

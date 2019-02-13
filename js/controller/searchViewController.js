@@ -22,7 +22,6 @@ class searchViewController {
         };
       }
     );
-
     view.container[0].addEventListener("loaded",
       () => {
         this.addEventDishItems();
