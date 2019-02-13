@@ -48,22 +48,24 @@ class dinnerOverView {
   }
 
   update(model, changeDetails) {
-    this.menuDiv.innerHTML = "";
-    this.menu = model.getFullMenu();
-    this.totalPrice = model.getTotalMenuPrice();
-    let overViewInfo = document.createElement("div");
-    this.myDinner.innerHTML = `My dinner: ${model.getNumberOfGuests()} people`;
 
-    this.menu.forEach(dish => {
-      let dItem = document.createElement("div");
-      dItem.setAttribute("class", "mx-auto")
-      let dItemView = new dishItemView(dItem, model, dish.id);
-      let price = model.dishPrice(dish.ingredients);
-      let spanE = document.createElement("span");
+      this.menuDiv.innerHTML = "";
+      this.menu = model.getFullMenu();
+      this.totalPrice = model.getTotalMenuPrice();
+      let overViewInfo = document.createElement("div");
+      this.myDinner.innerHTML = `My dinner: ${model.getNumberOfGuests()} people`;
+      
+      this.menu.forEach(dish => {
+        let dItem = document.createElement("div");
+        dItem.setAttribute("class", "mx-auto")
+        let dItemView = new dishItemView(dItem, model, dish);
+        let price = model.dishPrice(dish.extendedIngredients);
+        let spanE = document.createElement("span");
+        
+        spanE.innerText = `SEK ${price*this.model.getNumberOfGuests()}`;
+        dItem.appendChild(spanE);
+        this.menuDiv.appendChild(dItem)
+      });
+    }
 
-      spanE.innerText = `SEK ${price*this.model.getNumberOfGuests()}`;
-      dItem.appendChild(spanE);
-      this.menuDiv.appendChild(dItem)
-    });
-  }
 }

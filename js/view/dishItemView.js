@@ -13,7 +13,6 @@ var dishItemView = function (container, model, dish) {
   let img = document.createElement('img');
   img.height = 150;
   img.width = 150;
-  img.src = "images/infinity.png"
   img.src = `https://www.spoonacular.com/recipeImages/${dish.image}`;
   dishItem.appendChild(img);
   let dishTitle = document.createElement("p");

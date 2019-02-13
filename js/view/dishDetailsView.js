@@ -27,7 +27,7 @@ class dishDetailsView {
     this.dbackButton = document.createElement("input");
 
     dHeader.innerHTML = this.dish.name;
-    dImg.src = `images/${this.dish.image}`;
+    dImg.src = this.dish.image;
     dishDesc.innerHTML = this.dish.description;
     this.dbackButton.setAttribute("type", "button");
     this.dbackButton.setAttribute("value", "back to search");

@@ -109,6 +109,7 @@ var DinnerModel = function () {
 	this.getQuery = () =>apiParam;
 
 	this.getAllDishes = () => {
+		
 		let parameters = this.getQuery();
 		console.log(parameters);
 		let searchParams = new URLSearchParams(parameters);
@@ -130,6 +131,7 @@ var DinnerModel = function () {
 			.then(this.handleHTTPError)
 			.then(response => {
 				this.loadingDone = true;
+				//this.notifyObservers("SearchDone")
 				return response.json();})
 			.catch(console.error)
 	}
@@ -147,7 +149,7 @@ var DinnerModel = function () {
 		.then(response =>response.json())
 	}
 
-	this.getAllDishes(apiParam);
+	//this.getAllDishes(apiParam);
 
 	this.getStoredDishes = () => dishes;
 

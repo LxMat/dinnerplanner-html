@@ -34,7 +34,7 @@ class dinnerPrintoutView {
       dishPreparation.setAttribute("class", "col");
 
       let dishImage = document.createElement("img");
-      dishImage.src = `images/${dish.image}`;
+      dishImage.src = dish.image;
       dishImage.setAttribute("class", "col-sm1")
       let dishTitle = document.createElement("h2");
       dishTitle.innerText = dish.name;
@@ -87,7 +87,7 @@ class dinnerPrintoutView {
       dishPreparation.setAttribute("class", "col");
 
       let dishImage = document.createElement("img");
-      dishImage.src = `images/${dish.image}`;
+      dishImage.src = dish.image;
       dishImage.setAttribute("class", "col-sm1")
       let dishTitle = document.createElement("h2");
       dishTitle.innerText = dish.name;

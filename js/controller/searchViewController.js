@@ -9,7 +9,7 @@ class searchViewController {
       () => {
 
         this.submitTextEntry();
-        view.update(model);
+        view.update(model,"SearchSubmit");
         this.addEventDishItems();
       });
 
@@ -17,7 +17,7 @@ class searchViewController {
       event => {
         if (event.keyCode === 13) {
           this.submitTextEntry();
-          view.update(model);
+          view.update(model,"SearchSubmit");
           this.addEventDishItems();
         };
       }
