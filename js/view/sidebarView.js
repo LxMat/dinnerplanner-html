@@ -1,15 +1,10 @@
 /** sidebarView Object constructor
-
  * @param {jQuery object} container - references the HTML parent element that contains the view.
  * @param {Object} model - the reference to the Dinner Model
  */
 class sidebarView {
 	constructor(container, model) {
 		this.container = container;
-
-
-
-
 		/**
 		 * We use the @method find() on @var {jQuery object} container to look for various elements 
 		 * inside the view in orther to use them later on. For instance:
@@ -21,10 +16,9 @@ class sidebarView {
 		 * only 'Hello world', but you should change this by end of Lab 1).
 
 		 */
+
 		this.numberOfGuests = container.find("#numberOfGuests");
-
 		let nGuests = model.getNumberOfGuests();
-
 		let price = 0;
 		let currentMenu = container[0].querySelector(".dishMenu");
 
@@ -49,7 +43,6 @@ class sidebarView {
 		this.menuPrice.innerHTML = `SEK ${price}`
 		currentMenu.appendChild(this.menuPrice);
 
-
 		/**
 		 * When we want references to some view elements to be available from outside of view, we 
 		 * define them as this.someName. We don't need this in Lab 1 yet, but in Lab 2 it 
@@ -63,7 +56,6 @@ class sidebarView {
 
 		this.plusButton = container.find("#plusGuest")[0];
 		this.minusButton = container.find("#minusGuest")[0];
-
 		this.confirmbtn = document.createElement("input");
 		this.confirmbtn.setAttribute("type", "button");
 		this.confirmbtn.setAttribute("class", "btn-sm btn-primary")
@@ -76,7 +68,6 @@ class sidebarView {
 		 * Here we use @var {jQuery object} numberOfGuests that is a reference to <span>
 		 * in our view to dynamically set it's value to "Hello World".
 		 */
-
 		this.numberOfGuests.text(nGuests);
 		model.addObserver(this.update.bind(this));
 	}
@@ -87,11 +78,8 @@ class sidebarView {
 	update(model, changeDetails) {
 		// redraw just the portion affected by the changeDetails
 		// or remove all graphics in the view, read the whole model and redraw 
-
 		this.numberOfGuests = this.container.find("#numberOfGuests");
 		this.numberOfGuests[0].innerText = model.getNumberOfGuests();
-
-
 
 		if (model.menu.length > 0) {
 			let menuList = this.container.find(".menuList")[0];
@@ -108,7 +96,5 @@ class sidebarView {
 		this.menuPrice.innerHTML = `SEK ${model.getTotalMenuPrice()}`
 
 	}
-
-
 
 }

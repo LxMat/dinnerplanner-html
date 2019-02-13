@@ -92,7 +92,72 @@ class dishDetailsView {
 
     model.addObserver(this.update.bind(this));
   }
+  createNavigationDiv(){
 
+  }
+  createPrepDiv(dish){
+    let dishContent = document.createElement("div");
+    dishContent.setAttribute("class", "dishContent"); 
+
+    
+    let dHeader = document.createElement("h2")
+    let dImg = document.createElement("img");
+    let dishDesc = document.createElement("p");
+
+    dHeader.innerHTML = dish.title;
+    dImg.src = dish.image;
+    dishDesc.innerHTML = dish.instructions;
+
+    dishContent.appendChild(dHeader);
+    dishContent.appendChild(dImg);
+    dishContent.appendChild(dishDesc);
+    dishContent.appendChild(this.dbackButton);
+    this.dishDetails.appendChild(dishContent);
+
+
+  }
+  createTable(ingredients){
+    let th = document.createElement("th")
+    th.innerHTML = `Ingredients for ${this.nGuests} people`
+    let sum = 0;
+    let table = document.createElement("table");
+
+    let tablebtn = document.createElement("th")
+    tablebtn.appendChild(this.addToMenu);
+    
+    table.appendChild(th);
+    table.appendChild(tablebtn);
+    table.setAttribute("class", "table");
+
+    ingredients.forEach(ingredient => {
+      let row = document.createElement("tr");
+      let quantTR = document.createElement("td");
+      let unitTR = document.createElement("td");
+      let nameTR = document.createElement("td");
+      let priceTR = document.createElement("td");
+
+      sum += 1;
+
+      quantTR.innerText = ingredient.amount
+      unitTR.innerText = ingredient.unit
+      nameTR.innerText = ingredient.name
+      priceTR.innerText = `SEK 1`
+      row.appendChild(quantTR)
+      row.appendChild(unitTR)
+      row.appendChild(nameTR)
+      row.appendChild(priceTR)
+      table.appendChild(row);
+
+    })
+
+
+    let price = document.createElement("span")
+    price.innerHTML = `SEK ${sum}`;
+
+    this.ingredientList.appendChild(table);
+    this.ingredientList.appendChild(price);
+
+  }
   update(model, changedetails) {
     this.ingregientsDiv.innerHTML = "";
 
@@ -114,58 +179,23 @@ class dishDetailsView {
     let dImg = document.createElement("img");
     let dishDesc = document.createElement("p");
 
-    //TO BE FIXED
-    console.log(model.currentDish);
-    dHeader.innerHTML = this.dish.title;
-    dImg.src = `images/${this.dish.image}`;
-    dishDesc.innerHTML = this.dish.description;
-
-    dishContent.appendChild(dHeader);
-    dishContent.appendChild(dImg);
-    dishContent.appendChild(dishDesc);
-    dishContent.appendChild(this.dbackButton);
-    this.dishDetails.appendChild(dishContent);
-
-
     this.ingredientList.innerHTML = "";
-    let th = document.createElement("th");
-    th.innerHTML = `Ingredients for ${this.nGuests} people`
-    let sum = 0;
-    let table = document.createElement("table");
-    table.appendChild(th);
-    table.setAttribute("class", "table");
-
-    this.ingredients.forEach(ingredient => {
-      let row = document.createElement("tr");
-      let quantTR = document.createElement("td");
-      let unitTR = document.createElement("td");
-      let nameTR = document.createElement("td");
-      let priceTR = document.createElement("td");
-
-      sum += ingredient.price;
-
-      quantTR.innerText = ingredient.quantity
-      unitTR.innerText = ingredient.unit
-      nameTR.innerText = ingredient.name
-      priceTR.innerText = `SEK ${ingredient.price}`
-      row.appendChild(quantTR)
-      row.appendChild(unitTR)
-      row.appendChild(nameTR)
-      row.appendChild(priceTR)
-      table.appendChild(row);
-    });
-
-    this.ingredientList.appendChild(table);
-    let price = document.createElement("span")
+    
+    
+    //TO BE FIXED
+    model.getInstructions(model.currentDish)
+    .then(response => {
+      this.createPrepDiv(response)
+      this.createTable(response.extendedIngredients)    
+    })
 
 
+    // this.ingredientList.appendChild(table);
 
-    price.innerHTML = `SEK ${sum}`;
-    this.ingredientList.appendChild(this.addToMenu);
-    this.ingredientList.appendChild(price);
+    
 
     this.ingredientList.setAttribute("class", "ingredientList");
     this.ingregientsDiv.appendChild(this.ingredientList)
 
   }
-}
+} 

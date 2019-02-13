@@ -6,7 +6,6 @@
 // title: "No Knead Pizza Dough – Pizza Margherita"
 
 var dishItemView = function (container, model, dish) {
-  console.log(dish)
   //let dish = this.model.getDish(this.id);
   let dishItem = document.createElement("div");
   dishItem.setAttribute("class", "dishItem card loading");

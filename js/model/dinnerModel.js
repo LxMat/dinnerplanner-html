@@ -105,6 +105,7 @@ var DinnerModel = function () {
 		apiParam.query = query;
 		apiParam.type = type;
 	}
+
 	this.getQuery = () =>apiParam;
 
 	this.getAllDishes = () => {
@@ -133,9 +134,20 @@ var DinnerModel = function () {
 			.catch(console.error)
 	}
 
-	
-	this.getAllDishes(apiParam);
 
+	this.getInstructions = id =>{
+		url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`
+		return fetch(url,{
+			headers:{
+				"X-Mashape-Key": this.spoonKey,
+				"content-type": "application/JSON"
+			}
+		})
+		.then(this.handleHTTPError)
+		.then(response =>response.json())
+	}
+
+	this.getAllDishes(apiParam);
 
 	this.getStoredDishes = () => dishes;
 
