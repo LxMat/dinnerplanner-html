@@ -15,8 +15,6 @@ class searchView {
 
   update(model, changedetails) {
     if (changedetails === "SearchSubmit") {
-      //this.container.find("#loading").hide()
-      //this.container[0].dispatchEvent(new Event("loading"))
       this.searchResult = this.container[0].querySelector(".searchResult");
       this.searchResult.innerHTML = "";
       this.container.find($(".loader")).show()
