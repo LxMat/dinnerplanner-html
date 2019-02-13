@@ -176,7 +176,7 @@ var DinnerModel = function () {
 		//TODO Lab 1
 		let ingredients = []
 		this.menu.forEach(menuItem => {
-			menuItem.ingredients.forEach(ingredient => {
+			menuItem.extendedIngredients.forEach(ingredient => {
 				ingredients.push(ingredient);
 			})
 		});
@@ -185,7 +185,7 @@ var DinnerModel = function () {
 	this.dishPrice = (ingredients) => {
 		let sum = 0;
 		ingredients.forEach(ingredient => {
-			sum += ingredient.price;
+			sum += 1;//ingredient.price;
 		})
 		return sum;
 	}
@@ -193,9 +193,10 @@ var DinnerModel = function () {
 	this.getTotalMenuPrice = function () {
 		let sum = 0;
 
+		console.log(this.menu);
 		this.menu.forEach(menuItem => {
-			menuItem.ingredients.forEach(ingredient => {
-				sum += ingredient.price;
+			menuItem.extendedIngredients.forEach(ingredient => {
+				sum += 1;//ingredient.price;
 			})
 		});
 		return sum * this.numberGuests;
@@ -205,14 +206,17 @@ var DinnerModel = function () {
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = id => {
-		let dish = this.getDish(id);
-		for (let i = this.menu.length - 1; i >= 0; i--) {
-			if (this.menu[i].type == dish.type) {
-				this.menu.splice(i, 1);
-			}
+		//let dish = ""
+		this.getPromiseDish(id).then(dish => {
+			for (let i = this.menu.length - 1; i >= 0; i--) {
+				if (this.menu[i].type == dish.type) {
+					this.menu.splice(i, 1);
+				}
 		}
-		this.menu.push(dish);
-		this.notifyObservers();
+			this.menu.push(dish);
+			this.notifyObservers();
+		})
+		
 
 	}
 
@@ -226,6 +230,7 @@ var DinnerModel = function () {
 	//function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
 	//you can use the filter argument to filter out the dish by name or ingredient (use for search)
 	//if you don't pass any filter all the dishes will be returned
+	//OBSOLETE
 	this.searchDishes = function (type, filter) {
 		apiParam.query = filter;
 		//console.log("searched dish length", dishes.length)
@@ -237,7 +242,7 @@ var DinnerModel = function () {
 				filter = filter.toLowerCase()
 				found = false;
 
-				dish.ingredients.forEach(function (ingredient) {
+				dish.extendedIngredients.forEach(function (ingredient) {
 					if (ingredient.name.indexOf(filter) != -1) {
 						found = true;
 					}
@@ -259,6 +264,27 @@ var DinnerModel = function () {
 		}
 	}
 
+	this.getPromiseDish = function (id){
+		//let searchquery = `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?diet=${diet}&excludeIngredients=${exclude}&instructionsRequired=false&intolerances=egg%2C+gluten&limitLicense=false&number=10&offset=0&query=burger&type=main+course`
+		let searchqueryURL = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`
+
+		//Experimenting with fetch
+		console.log("new request");
+
+		this.loadingDone = false;
+		return fetch(searchqueryURL, {
+				headers: {
+					"X-Mashape-Key": this.spoonKey,
+					"content-type": "application/JSON"
+				}
+			})
+			.then(this.handleHTTPError)
+			.then(response => {
+				this.loadingDone = true;
+				return response.json();})
+			.catch(console.error)
+	}
+
 
 
 	//returns all dishes
@@ -275,10 +301,10 @@ var DinnerModel = function () {
 
 
 	//Keep track of current dish
-	this.currentDish = 1;
-	this.getCurrentDish = () => this.getDish(this.currentDish)
-	this.setCurrentDish = (id) => {
-		this.currentDish = id
+	this.currentDish = dishes[0];
+	this.getCurrentDish = () => this.currentDish;
+	this.setCurrentDish = (dish) => {
+		this.currentDish = dish;
 		this.notifyObservers();
 	};
 

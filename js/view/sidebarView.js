@@ -86,8 +86,8 @@ class sidebarView {
 			menuList.innerHTML = "";
 			model.menu.forEach(dish => {
 				let menuItem = document.createElement("div");
-				let name = dish.name;
-				let dPrice = model.dishPrice(dish.ingredients) * model.getNumberOfGuests();
+				let name = dish.title;
+				let dPrice = 1;//model.dishPrice(dish.extendedIngredients) * model.getNumberOfGuests();
 				menuItem.innerText = `${name}  ${dPrice}`;
 				menuList.appendChild(menuItem);
 			});
