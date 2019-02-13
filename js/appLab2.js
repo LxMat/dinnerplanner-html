@@ -44,7 +44,11 @@ $(function () {
       this.hideAllViews()
       this.views.printView.container.show()
     }
-
+    showError(){
+      this.hideAllViews();
+      //console.log("errorv",this.errorView);
+      this.views.errorView.show()
+    }
   }
 
   //We instantiate our model
@@ -58,6 +62,7 @@ $(function () {
   var dPrintoutView = new dinnerPrintoutView($(".printout"), model);
   var searchV = new searchView($(".dishSearchView"), model);
   var dishDetailV = new dishDetailsView($(".detailsView"), model);
+  var errorV = new errorView($(".error"),model)
   var loader = $("#loading")
   loader.hide();
 
@@ -66,6 +71,9 @@ $(function () {
   genStateController.addView("printView", dPrintoutView);
   genStateController.addView("searchView", searchV);
   genStateController.addView("detailsView", dishDetailV);
+  genStateController.addView("errorView", errorV);
+
+
 
   var sidebarVController = new sidebarViewController(sidebarV, model, genStateController);
   var dishDetailsVController = new dishDetailsViewController(dishDetailV, model, genStateController);

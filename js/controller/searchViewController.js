@@ -22,10 +22,14 @@ class searchViewController {
         };
       }
     );
-
     view.container[0].addEventListener("loaded",
       () => {
         this.addEventDishItems();
+      });
+
+    view.container[0].addEventListener("error",
+      () => {
+        this.generalController.showError();
       });
   }
   submitTextEntry() {

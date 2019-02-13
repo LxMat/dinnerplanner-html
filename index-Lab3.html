@@ -52,28 +52,33 @@
 			<div class="dishSearchView col container">
 				<div class="row">
 					<div class="content">
-							<p>Find a Dish</p>
-							<input type="text" class="textSearch">
-							<select class ="selectSearch">
-									<option value="starter">Starter</option>
-									<option selected value="main dish">Main Course</option>
-									<option value="dessert">Dessert</option>
-									<option value="side dish">Side dish</option>
-									<option value="appetizer">Appetizer</option>
-									<option value="salad">Salad</option>
-									<option value="sauce">Sauce</option>
-								</select>
-							<input type="button" value="Search" class="searchButton">
-						</div>
+						<p>Find a Dish</p>
+						<input type="text" class="textSearch">
+						<select class ="selectSearch">
+							<option value="starter">Starter</option>
+							<option selected value="main dish">Main Course</option>
+							<option value="dessert">Dessert</option>
+							<option value="side dish">Side dish</option>
+							<option value="appetizer">Appetizer</option>
+							<option value="salad">Salad</option>
+							<option value="sauce">Sauce</option>
+						</select>
+						<input type="button" value="Search" class="searchButton">
 					</div>
-					<div class="row">
-						<div class="searchResult d-flex flex-row flex-wrap"></div>
-						<div id="loading"><svg width="200px"  height="200px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="lds-infinity" style="background: none; shape-rendering: auto;"><path fill="none" ng-attr-stroke="{{config.stroke}}" ng-attr-stroke-width="{{config.width}}" ng-attr-stroke-dasharray="{{config.dasharray}}" d="M24.3,30C11.4,30,5,43.3,5,50s6.4,20,19.3,20c19.3,0,32.1-40,51.4-40 C88.6,30,95,43.3,95,50s-6.4,20-19.3,20C56.4,70,43.6,30,24.3,30z" stroke="#ff727d" stroke-width="5" stroke-dasharray="205.271142578125 51.317785644531256" class=""><animate attributeName="stroke-dashoffset" calcMode="linear" values="0;256.58892822265625" keyTimes="0;1" dur="7.5" begin="0s" repeatCount="indefinite" class=""></animate></path></svg>
-						</div>
+				</div>
+				<div class="row">
+					<div id="loading" class="loader">
+						<svg width="200px"  height="200px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="lds-infinity" style="background: none; shape-rendering: auto;"><path fill="none" ng-attr-stroke="{{config.stroke}}" ng-attr-stroke-width="{{config.width}}" ng-attr-stroke-dasharray="{{config.dasharray}}" d="M24.3,30C11.4,30,5,43.3,5,50s6.4,20,19.3,20c19.3,0,32.1-40,51.4-40 C88.6,30,95,43.3,95,50s-6.4,20-19.3,20C56.4,70,43.6,30,24.3,30z" stroke="#ff727d" stroke-width="5" stroke-dasharray="205.271142578125 51.317785644531256" class=""><animate attributeName="stroke-dashoffset" calcMode="linear" values="0;256.58892822265625" keyTimes="0;1" dur="7.5" begin="0s" repeatCount="indefinite" class=""></animate></path></svg>
 					</div>
+					<div class="searchResult d-flex flex-row flex-wrap"></div>
+						</div>
+					
 				</div>
 							<!-- dishDetailsView-->
 		<div class="detailsView  row">
+				<div id="loading" class="loader">
+						<svg width="200px"  height="200px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="lds-infinity" style="background: none; shape-rendering: auto;"><path fill="none" ng-attr-stroke="{{config.stroke}}" ng-attr-stroke-width="{{config.width}}" ng-attr-stroke-dasharray="{{config.dasharray}}" d="M24.3,30C11.4,30,5,43.3,5,50s6.4,20,19.3,20c19.3,0,32.1-40,51.4-40 C88.6,30,95,43.3,95,50s-6.4,20-19.3,20C56.4,70,43.6,30,24.3,30z" stroke="#ff727d" stroke-width="5" stroke-dasharray="205.271142578125 51.317785644531256" class=""><animate attributeName="stroke-dashoffset" calcMode="linear" values="0;256.58892822265625" keyTimes="0;1" dur="7.5" begin="0s" repeatCount="indefinite" class=""></animate></path></svg>
+					</div>
 			<div class="dishDetails col-md">
 			</div>
 			<div class="ingredients col-md" ></div>
@@ -92,6 +97,7 @@
 
 	<!-- ... printout...  -->
 	<div class="printout"></div>
+	
 
 		</div>
 	</div>
@@ -101,6 +107,8 @@
 
 	
 		</div>
+
+		<div class="error"></div>
 <!--
 		<div id="welcome-wrapper">
 				<div  class="align-center">
@@ -129,6 +137,7 @@
 	<script src="js/view/dinnerOverView.js"></script>
 	<script src="js/view/dinnerPrintoutView.js"></script>
 	<script src="js/view/dishDetailsView.js"></script>
+	<script src="js/view/errorView.js"></script>
 	<script src="js/controller/sidebarViewController.js"></script>
 	<script src="js/controller/dishDetailsViewController.js"></script>
 	<script src="js/controller/searchViewController.js"></script>
