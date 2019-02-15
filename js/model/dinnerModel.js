@@ -120,7 +120,7 @@ var DinnerModel = function () {
 		let searchString  = searchParams.toString();
 
 		//let searchquery = `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?diet=${diet}&excludeIngredients=${exclude}&instructionsRequired=false&intolerances=egg%2C+gluten&limitLicense=false&number=10&offset=0&query=burger&type=main+course`
-		let searchqueryURL = `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?${searchString}`
+		let searchqueryURL = `http://sunset.nada.kth.se:8080/iprog/group/62/recipes/search?${searchString}`
 
 		//Experimenting with fetch
 		console.log("new request");
@@ -274,7 +274,7 @@ var DinnerModel = function () {
 
 	this.getPromiseDish = function (id){
 		//let searchquery = `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?diet=${diet}&excludeIngredients=${exclude}&instructionsRequired=false&intolerances=egg%2C+gluten&limitLicense=false&number=10&offset=0&query=burger&type=main+course`
-		let searchqueryURL = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`
+		let searchqueryURL = `http://sunset.nada.kth.se:8080/iprog/group/62/recipes/${id}/information`
 
 		//Experimenting with fetch
 		console.log("new request");
