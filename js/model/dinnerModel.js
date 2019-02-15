@@ -142,7 +142,7 @@ var DinnerModel = function () {
 
 
 	this.getInstructions = id =>{
-		url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`
+		url = `http://sunset.nada.kth.se:8080/iprog/group/62/recipes/${id}/information`
 		return fetch(url,{
 			headers:{
 				"X-Mashape-Key": this.spoonKey,
