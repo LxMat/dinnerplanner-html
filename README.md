@@ -9,6 +9,15 @@
  - can search for food
  - displays a loading image when searching
 
+Add file js/SpoonAPI.js containing
+
+```javascript
+var SpoonAPI = function () {
+
+	this.KEY = "<key>";	
+
+}
+```
 
 
 Interaction Programing - Lab assignment - HTML
